@@ -1,1 +1,77 @@
-<p>missions works!</p>
+<section class="mission-arc-section" #arcSection>
+  <div class="arc-container">
+    <!-- SVG Arc Path -->
+    <svg class="arc-svg" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradient for filled area -->
+        <linearGradient id="arcFillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#E8DCFF;stop-opacity:0.4" />
+          <stop offset="100%" style="stop-color:#F5F0FF;stop-opacity:0.1" />
+        </linearGradient>
+        
+        <!-- Blur filter for soft edges -->
+        <filter id="arcBlur">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+        </filter>
+      </defs>
+      
+      <!-- Filled arc area (beneath the stroke) -->
+      <path 
+        #arcFillPath
+        class="arc-fill"
+        d="M 0,500 Q 360,250 720,260 Q 1080,270 1440,500 L 1440,600 L 0,600 Z"
+        fill="url(#arcFillGradient)"
+        filter="url(#arcBlur)"
+      />
+      
+      <!-- Purple stroke arc (main path that nodes follow) -->
+      <path 
+        #arcPath
+        id="motionPath"
+        class="arc-stroke"
+        d="M 0,500 Q 360,250 720,260 Q 1080,270 1440,500"
+        fill="none"
+        stroke="#6B2BE0"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+    </svg>
+
+    <!-- Circular Nodes (Vision, Mission, Core Values) -->
+    <div #node1 class="node-circle" data-node="vision">
+      <div class="node-inner">
+        <div class="node-label">Vision</div>
+      </div>
+    </div>
+
+    <div #node2 class="node-circle" data-node="mission">
+      <div class="node-inner">
+        <div class="node-label">Mission</div>
+      </div>
+    </div>
+
+    <div #node3 class="node-circle" data-node="values">
+      <div class="node-inner">
+        <div class="node-label">Core Values</div>
+      </div>
+    </div>
+
+    <!-- Text Content Areas -->
+    <div class="text-content-container">
+      <div #visionText class="content-text" data-content="vision">
+        <p>We envision a world where technology is effortless, design is accessible to all, and every product we craft sets new benchmarks for excellence.</p>
+      </div>
+
+      <div #missionText class="content-text" data-content="mission">
+        <p>We turn challenges into opportunities by designing seamless, intuitive, and high-impact digital products—helping businesses scale, innovate, and succeed in a rapidly evolving world.</p>
+      </div>
+
+      <div #valuesText class="content-text" data-content="values">
+        <p>At Enspirit, we believe in collaboration, integrity, and a relentless pursuit of excellence—values that guide every project and partnership we undertake.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll spacer for animation timeline -->
+  <div class="scroll-spacer"></div>
+</section>

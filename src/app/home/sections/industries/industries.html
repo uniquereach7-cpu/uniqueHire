@@ -1,5 +1,4 @@
-<!-- industries.html (simple, no snap, no observers, no wheel hijack) -->
-<section class="industries">
+<section class="industries" #industriesSection>
   <div class="industries__wrap">
     <header class="industries__head">
       <span class="kicker">OUR SECTORS</span>
@@ -9,19 +8,16 @@
       </p>
     </header>
 
-    <div class="industries__grid">
+    <div class="industriesStage" #industriesStage>
+      <!-- SAME 4 cards -->
       <article class="heroCard">
         <img class="heroCard__img" src="assets/indushealth.jpeg" alt="Healthcare & Life Sciences" loading="lazy" />
         <div class="heroCard__overlay" aria-hidden="true"></div>
         <div class="heroCard__content">
           <h3 class="heroCard__title">Healthcare & Life Sciences</h3>
-          <p class="heroCard__desc">
-            Digital health platforms, telemedicine workflows, and analytics that improve outcomes and operational velocity.
-          </p>
+          <p class="heroCard__desc">Digital health platforms, telemedicine workflows, and analytics that improve outcomes and operational velocity.</p>
           <div class="heroCard__chips">
-            <span class="chip">Telemed</span>
-            <span class="chip">Data</span>
-            <span class="chip">Security</span>
+            <span class="chip">Telemed</span><span class="chip">Data</span><span class="chip">Security</span>
           </div>
         </div>
       </article>
@@ -31,12 +27,9 @@
         <div class="heroCard__overlay" aria-hidden="true"></div>
         <div class="heroCard__content">
           <h3 class="heroCard__title">Banking & Finance</h3>
-          <p class="heroCard__desc">
-            Cloud modernization, fintech automation, and resilient systems that keep risk low and trust high.
-          </p>
+          <p class="heroCard__desc">Cloud modernization, fintech automation, and resilient systems that keep risk low and trust high.</p>
           <div class="heroCard__chips">
-            <span class="chip">Cloud</span>
-            <span class="chip">Compliance</span>
+            <span class="chip">Cloud</span><span class="chip">Compliance</span>
           </div>
         </div>
       </article>
@@ -46,12 +39,9 @@
         <div class="heroCard__overlay" aria-hidden="true"></div>
         <div class="heroCard__content">
           <h3 class="heroCard__title">Retail & E-commerce</h3>
-          <p class="heroCard__desc">
-            Scalable commerce, personalization, and supply chain visibility for faster, smarter growth.
-          </p>
+          <p class="heroCard__desc">Scalable commerce, personalization, and supply chain visibility for faster, smarter growth.</p>
           <div class="heroCard__chips">
-            <span class="chip">Personalization</span>
-            <span class="chip">Analytics</span>
+            <span class="chip">Personalization</span><span class="chip">Analytics</span>
           </div>
         </div>
       </article>
@@ -61,13 +51,9 @@
         <div class="heroCard__overlay" aria-hidden="true"></div>
         <div class="heroCard__content">
           <h3 class="heroCard__title">Technology & Software</h3>
-          <p class="heroCard__desc">
-            Product engineering, AI integration, and delivery velocity through high performing teams.
-          </p>
+          <p class="heroCard__desc">Product engineering, AI integration, and delivery velocity through high performing teams.</p>
           <div class="heroCard__chips">
-            <span class="chip">AI</span>
-            <span class="chip">SaaS</span>
-            <span class="chip">Delivery</span>
+            <span class="chip">AI</span><span class="chip">SaaS</span><span class="chip">Delivery</span>
           </div>
         </div>
       </article>

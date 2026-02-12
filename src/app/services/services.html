@@ -1,4 +1,3 @@
-<!-- services-section.component.html -->
 <section class="sv-hero" aria-label="Our Services">
   <div class="sv-hero__inner">
     <p class="sv-hero__eyebrow" appScrollAnimate="fade-in">OUR SERVICES</p>
@@ -16,87 +15,73 @@
 
 <section class="sv-cards" aria-label="Services list">
   <div class="sv-cards__inner">
-    <div class="sv-grid">
-      <article class="sv-card" *ngFor="let s of services; let i = index" [appScrollAnimate]="i % 3 === 0 ? 'slide-left' : i % 3 === 1 ? 'fall-down' : 'slide-right'" [delay]="i * 100">
-        <div class="sv-card__icon" [attr.data-variant]="s.iconVariant" aria-hidden="true">
-          <svg class="sv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <ng-container [ngSwitch]="s.icon">
-              <!-- users -->
-              <ng-container *ngSwitchCase="'users'">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </ng-container>
+    <div class="sv-rows">
+      <div class="sv-row" *ngFor="let row of rows; let r = index" [attr.data-row]="r">
+        <article class="sv-card"
+                 *ngFor="let s of row; let c = index"
+                 [attr.data-variant]="s.iconVariant">
+          <div class="sv-card__top">
+            <span class="sv-card__num">{{ (r * 3) + (c + 1) }}</span>
 
-              <!-- code -->
-              <ng-container *ngSwitchCase="'code'">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </ng-container>
+            <div class="sv-card__icon" aria-hidden="true">
+              <svg class="sv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <ng-container [ngSwitch]="s.icon">
+                  <ng-container *ngSwitchCase="'users'">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </ng-container>
 
-              <!-- globe -->
-              <ng-container *ngSwitchCase="'globe'">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M2 12h20"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </ng-container>
+                  <ng-container *ngSwitchCase="'code'">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                  </ng-container>
 
-              <!-- award -->
-              <ng-container *ngSwitchCase="'award'">
-                <circle cx="12" cy="8" r="6"/>
-                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-              </ng-container>
+                  <ng-container *ngSwitchCase="'globe'">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                  </ng-container>
 
-              <!-- briefcase -->
-              <ng-container *ngSwitchCase="'briefcase'">
-                <rect x="3" y="7" width="18" height="14" rx="2"/>
-                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                <path d="M3 13h18"/>
-              </ng-container>
+                  <ng-container *ngSwitchCase="'award'">
+                    <circle cx="12" cy="8" r="6"/>
+                    <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                  </ng-container>
 
-              <!-- target -->
-              <ng-container *ngSwitchCase="'target'">
-                <circle cx="12" cy="12" r="10"/>
-                <circle cx="12" cy="12" r="6"/>
-                <circle cx="12" cy="12" r="2"/>
-              </ng-container>
+                  <ng-container *ngSwitchCase="'briefcase'">
+                    <rect x="3" y="7" width="18" height="14" rx="2"/>
+                    <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    <path d="M3 13h18"/>
+                  </ng-container>
 
-              <ng-container *ngSwitchDefault>
-                <circle cx="12" cy="12" r="10"/>
-              </ng-container>
-            </ng-container>
-          </svg>
-        </div>
+                  <ng-container *ngSwitchCase="'target'">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="6"/>
+                    <circle cx="12" cy="12" r="2"/>
+                  </ng-container>
 
-        <h3 class="sv-card__title">{{ s.title }}</h3>
-        <p class="sv-card__subtitle">{{ s.subtitle }}</p>
-        <p class="sv-card__desc">{{ s.desc }}</p>
+                  <ng-container *ngSwitchDefault>
+                    <circle cx="12" cy="12" r="10"/>
+                  </ng-container>
+                </ng-container>
+              </svg>
+            </div>
+          </div>
 
-        <ul class="sv-points" *ngIf="s.points?.length">
-          <li class="sv-point" *ngFor="let p of s.points">
-            <svg class="sv-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M9 12l2 2 4-4"></path>
-            </svg>
-            <span>{{ p }}</span>
-          </li>
-        </ul>
-      </article>
+          <h3 class="sv-card__title">{{ s.title }}</h3>
+          <p class="sv-card__subtitle">{{ s.subtitle }}</p>
+          <p class="sv-card__desc">{{ s.desc }}</p>
+
+          <ul class="sv-points" *ngIf="s.points?.length">
+            <li class="sv-point" *ngFor="let p of s.points">
+              <span class="sv-dot" aria-hidden="true"></span>
+              <span>{{ p }}</span>
+            </li>
+          </ul>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="sv-cta" aria-label="Contact call to action">
-  <div class="sv-cta__inner">
-    <h2 class="sv-cta__title" appScrollAnimate="fall-down">Let's Talk</h2>
-    <p class="sv-cta__lead" appScrollAnimate="fade-in" [delay]="200">
-      Ready to transform your workforce? Let's build something amazing together.
-    </p>
-
-    <a class="sv-cta__btn" routerLink="/contact" appScrollAnimate="slide-up" [delay]="300">
-      Start a Conversation
-      <span class="sv-cta__arrow" aria-hidden="true">→</span>
-    </a>
   </div>
 </section>

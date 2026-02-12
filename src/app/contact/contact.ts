@@ -4,6 +4,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 import { ScrollAnimateDirective } from '../directives/scroll-animate.directive';
 
+type Place = { name: string; address: string };
+
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -15,13 +17,11 @@ export class Contact {
   @Input() heroImage = 'assets/contact-hero.jpg';
   @Input() bgBelow = '#ffffff';
 
-  // === EmailJS config: replace with your own values ===
+  // EmailJS config
   emailServiceId = 'YOUR_EMAILJS_SERVICE_ID';
   emailTemplateId = 'YOUR_EMAILJS_TEMPLATE_ID';
-  emailPublicKey = 'YOUR_EMAILJS_PUBLIC_KEY'; // optional if you call init
-  // ====================================================
+  emailPublicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
 
-  // Template-driven form model
   formModel = {
     name: '',
     email: '',
@@ -31,20 +31,11 @@ export class Contact {
     message: ''
   };
 
-  // UI state
   sending = false;
   success = '';
   error = '';
 
-  // Contact details and places (unchanged)
-  contact = {
-    email: 'hello@yourcompany.com',
-    phone: '+1-555-123-4567',
-    addressLink: 'https://maps.google.com/?q=Your+Company+Address',
-    addressText: '123 Business Ave, Suite 400, City, Country'
-  };
-
-  services = [
+  services: string[] = [
     'Staffing & Recruitment',
     'IT Consulting',
     'Managed Services',
@@ -52,22 +43,32 @@ export class Contact {
     'Other'
   ];
 
-  places = [
-    { name: 'Hyderabad', address: 'Unit no. 5A,11th floor, Tower 2, Vamsiram Jyothi Granules, Sy No. 199, Kondapur, Serilingampally, Hyderabad, Telangana, India-500084' },
-    { name: 'Bangalore ', address: '#18, 3rd Floor, Gamma Block, Sigma Soft Tech Park, Whitefield, Bangalore – 560066.' },
-    { name: 'Australia', address: '15 Dromana Way, Truganina, Victoria, Australia – 3029.' },
-    { name: 'Canada', address: '30 Ryler Way, Markham, ON, Canada – L3S0E7.' },
+  places: Place[] = [
+    {
+      name: 'Hyderabad',
+      address:
+        'Unit no. 5A,11th floor, Tower 2, Vamsiram Jyothi Granules, Sy No. 199, Kondapur, Serilingampally, Hyderabad, Telangana, India-500084'
+    },
+    {
+      name: 'Bangalore',
+      address:
+        '#18, 3rd Floor, Gamma Block, Sigma Soft Tech Park, Whitefield, Bangalore – 560066.'
+    },
+    {
+      name: 'Australia',
+      address: '15 Dromana Way, Truganina, Victoria, Australia – 3029.'
+    },
+    {
+      name: 'Canada',
+      address: '30 Ryler Way, Markham, ON, Canada – L3S0E7.'
+    }
   ];
 
   constructor() {
-    // init EmailJS if public key provided
     if (this.emailPublicKey && this.emailPublicKey !== 'YOUR_EMAILJS_PUBLIC_KEY') {
       try {
         emailjs.init(this.emailPublicKey);
-      } catch (e) {
-        // ignore init errors; we'll still pass publicKey to send()
-        // console.warn('EmailJS init failed', e);
-      }
+      } catch {}
     }
   }
 
@@ -75,7 +76,6 @@ export class Contact {
     this.success = '';
     this.error = '';
 
-    // form validity check
     if (!f || f.invalid) {
       f?.control?.markAllAsTouched();
       return;
@@ -99,9 +99,9 @@ export class Contact {
         templateParams,
         this.emailPublicKey !== 'YOUR_EMAILJS_PUBLIC_KEY' ? this.emailPublicKey : undefined
       );
+
       this.success = 'Message sent successfully — we will contact you shortly.';
-      f.resetForm(); // clears form and validation
-      // reset model (just in case)
+      f.resetForm();
       this.formModel = { name: '', email: '', phone: '', subject: '', service: '', message: '' };
     } catch (err) {
       console.error('EmailJS send error', err);

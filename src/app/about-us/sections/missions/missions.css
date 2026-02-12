@@ -3,10 +3,10 @@
    ======================================== */
 
 .mission-arc-section {
+  overflow-x: hidden; /* hides any horizontal overflow coming from big node circles */
   position: relative;
   width: 100%;
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 50%, #ffffff 100%);
-  overflow: visible;
 }
 
 /* Arc Container - Pinned by ScrollTrigger */
@@ -17,18 +17,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: visible; /* allow vertical overflow/visual shadows, but .mission-arc-section hides horizontal overflow */
+  overscroll-behavior-x: none;
   pointer-events: none;
 }
 /* SVG Arc Styling */
 .arc-svg {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%); /* center the svg so its control points don't add width */
   width: 100%;
+  max-width: 100%;
   height: 100%;
   z-index: 1;
   overflow: visible;
+  box-sizing: border-box;
 }
 
 .arc-stroke {
@@ -67,6 +71,9 @@
   border: 1px solid rgba(255, 255, 255, 0.6);
   opacity: 0;
   visibility: hidden;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* Inner vignette effect */

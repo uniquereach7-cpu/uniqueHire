@@ -61,7 +61,7 @@ export class Missions implements AfterViewInit, OnDestroy {
       // Ensure initial positions (center nodes at xPercent/yPercent for proper alignment)
       nodes.forEach(n => gsap.set(n, { xPercent: -50, yPercent: -50, autoAlpha: 0 }));
 
-      // Helper to toggle active classes (0 = vision, 1 = mission, 2 = values)
+      // Helper to toggle active classes
       const setActive = (index: number) => {
         nodes.forEach((n, i) => n.classList.toggle('active', i === index));
         visionText.classList.toggle('active', index === 0);
@@ -69,79 +69,75 @@ export class Missions implements AfterViewInit, OnDestroy {
         valuesText.classList.toggle('active', index === 2);
       };
 
-      // Create scrubbed timeline and pin the section
+      // Define sequence: order of nodes to appear, mapped to content index
+      // Format: { node: HTMLElement, contentIndex: 0|1|2 }
+      // Sequence: Mission -> Vision -> Values
+      const nodesOrder = [
+        { node: nodes[1], contentIndex: 1 },  // Mission (contentIndex 1)
+        { node: nodes[0], contentIndex: 0 },  // Vision (contentIndex 0)
+        { node: nodes[2], contentIndex: 2 }   // Values (contentIndex 2)
+      ];
+
+      // Pick the moment to switch content along the path (0..1)
+      const midPoint = 0.30; // <-- change this to 0.25/0.3/0.35 to tune when the content switches
+
+      // Main scrubbed timeline - pin the section while the animation plays
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          // 3 segments -> use 300% to give one viewport-length per node; tune as needed
-          end: '+=300%',
+          end: '+=360%', // enough scroll space for 3 nodes; tweak if needed
           scrub: 1,
           pin: true,
           anticipatePin: 1,
-          pinSpacing: true,
           invalidateOnRefresh: true
         }
       });
 
-      // SEQUENCE: Mission (node2) -> Vision (node1) -> Values (node3)
-      // Each block moves the node from path start -> about center (start:0 -> end:0.5),
-      // fades it in while moving, then fades it out (so only one is visible at a time).
+      // Iterate nodes sequentially
+      nodesOrder.forEach((item, idx) => {
+        const isLast = idx === nodesOrder.length - 1;
 
-      // 1) Mission (node2)
-      tl.to(nodes[1], {
-        motionPath: {
-          path: arcPath,
-          align: arcPath,
-          alignOrigin: [0.5, 0.5],
-          start: 0,
-          end: 0.5
-        },
-        autoAlpha: 1,
-        scale: 1.05,
-        ease: 'none',
-        duration: 1
-      }, 0)
-        .call(() => setActive(1))
-        // small fade-out after center so next node can take focus
-        .to(nodes[1], { autoAlpha: 0, scale: 0.95, duration: 0.18, ease: 'power1.in' }, '>-0.05');
+        // PART A: start -> midPoint (fade + move to mid)
+        tl.to(item.node, {
+          motionPath: {
+            path: arcPath,
+            align: arcPath,
+            alignOrigin: [0.5, 0.5],
+            start: 0,
+            end: midPoint
+          },
+          autoAlpha: 1,
+          scale: 1.05,
+          ease: 'none',
+          duration: 1
+        });
 
-      // 2) Vision (node1) - starts AFTER mission finishes
-      tl.to(nodes[0], {
-        motionPath: {
-          path: arcPath,
-          align: arcPath,
-          alignOrigin: [0.5, 0.5],
-          start: 0,
-          end: 0.5
-        },
-        autoAlpha: 1,
-        scale: 1.05,
-        ease: 'none',
-        duration: 1
-      }, '>-0.02')
-        .call(() => setActive(0))
-        .to(nodes[0], { autoAlpha: 0, scale: 0.95, duration: 0.18, ease: 'power1.in' }, '>-0.05');
+        // Callback when node hits midPoint (this is the earlier trigger)
+        tl.call(() => setActive(item.contentIndex));
 
-      // 3) Values (node3)
-      tl.to(nodes[2], {
-        motionPath: {
-          path: arcPath,
-          align: arcPath,
-          alignOrigin: [0.5, 0.5],
-          start: 0,
-          end: 0.5
-        },
-        autoAlpha: 1,
-        scale: 1.05,
-        ease: 'none',
-        duration: 1
-      }, '>-0.02')
-        .call(() => setActive(2));
+        // PART B: midPoint -> end (continue to the right end of path)
+        tl.to(item.node, {
+          motionPath: {
+            path: arcPath,
+            align: arcPath,
+            alignOrigin: [0.5, 0.5],
+            start: midPoint,
+            end: 1
+          },
+          ease: 'none',
+          duration: 1
+        });
+
+        // Fade out (except last node)
+        if (!isLast) {
+          tl.to(item.node, { autoAlpha: 0, scale: 0.95, duration: 0.18, ease: 'power1.in' });
+        }
+      });
 
     }, section);
 
-    // Ensure ScrollTrigger recalculates on resize
+    // Refresh to calculate sizes and path lengths correctly
     ScrollTrigger.refresh();
   }
 }

@@ -1,0 +1,115 @@
+<section class="contact-page">
+
+  <!-- HERO -->
+  <div class="hero" [style.background-image]="'url(' + heroImage + ')'">
+  <div class="overlay">
+      <h1 class="main-title" appScrollAnimate="fall-down">Contact Us</h1>
+      <p class="subtitle" appScrollAnimate="fade-in" [delay]="200">We'd love to hear from you — questions, feedback or project inquiries.</p>
+    </div>
+
+    <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path fill="#003d77" d="M0,64 C360,144 1080,0 1440,64 L1440,120 L0,120 Z"></path>
+    </svg>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <div class="contact-container">
+    <div class="contact-grid">
+      
+      <!-- LEFT: Contact Details -->
+      <div class="contact-details">
+        <h2 appScrollAnimate="slide-left">Contact Details</h2>
+        <div class="detail-item" appScrollAnimate="fade-in" [delay]="150">
+          <h4>Email</h4>
+          <a href="mailto:hello@yourcompany.com">hello@yourcompany.com</a>
+        </div>
+        <div class="detail-item" appScrollAnimate="fade-in" [delay]="300">
+          <h4>Phone</h4>
+          <a href="tel:+15551234567">+1-555-123-4567</a>
+        </div>
+        <div class="detail-item" appScrollAnimate="fade-in" [delay]="450">
+          <h4>Address</h4>
+          <a href="https://maps.google.com" target="_blank">123 Business Ave, City, Country</a>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="form-section" appScrollAnimate="slide-right">
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" novalidate>
+          <div class="row">
+            <div class="field">
+              <label>Name</label>
+              <input type="text" name="name" [(ngModel)]="formModel.name" required minlength="2" #name="ngModel" />
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="email" name="email" [(ngModel)]="formModel.email" required #email="ngModel" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Phone</label>
+              <input type="text" name="phone" [(ngModel)]="formModel.phone" required minlength="6" #phone="ngModel" />
+            </div>
+            <div class="field">
+              <label>Subject</label>
+              <input type="text" name="subject" [(ngModel)]="formModel.subject" required #subject="ngModel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Choose a service</label>
+            <div class="dropdown">
+              <select name="service" [(ngModel)]="formModel.service" required #service="ngModel">
+                <option value="" disabled selected>Select a service</option>
+                <option *ngFor="let s of services" [value]="s">{{ s }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Message</label>
+            <textarea name="message" rows="4" [(ngModel)]="formModel.message"></textarea>
+          </div>
+
+          <div class="submit-wrap">
+            <button type="submit" [disabled]="sending">Submit</button>
+            <div class="thank-you" *ngIf="success">✅ Thank you for submitting!</div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ADDRESSES -->
+    <div class="addresses">
+      <div class="address-card" *ngFor="let p of places; let i = index" [appScrollAnimate]="i % 2 === 0 ? 'slide-left' : 'slide-right'" [delay]="i * 150">
+        <h3>{{ p.name }}</h3>
+        <p>{{ p.address }}</p>
+      </div>
+    </div>
+
+    <!-- MAP (INLINE INSIDE CONTAINER) -->
+    <div class="map-container" >
+      <h2 class="map-heading" appScrollAnimate="fall-down">Locate Us Here</h2>
+      <a
+        href="https://share.google/nIrg64I5k0H81cjIe"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open company location on Google Maps"
+      >
+        <div class="map-frame">
+          <img
+            src="assets/mp1.png"
+            alt="Map showing company location"
+            class="map-image"
+          />
+          <div class="map-overlay">
+            <span>View on Google Maps</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div> <!-- end .contact-container -->
+</section>

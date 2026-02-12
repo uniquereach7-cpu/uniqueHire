@@ -1,0 +1,41 @@
+<header class="rr-header" [class.scrolled]="scrolled" [class.is-home]="isHome">
+  <div class="rr-inner">
+    <!-- LOGO (left) -->
+    <a class="rr-brand" routerLink="/home" aria-label="UniqueHire home" (click)="closeMenu()">
+      <img src="assets/logo.png" alt="UniqueHire" />
+    </a>
+
+    <!-- LINKS (center) -->
+    <nav class="rr-nav" aria-label="Primary">
+      <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">HOME</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">ABOUT</a>
+      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">SERVICES</a>
+      <a routerLink="/gcc" routerLinkActive="active" (click)="closeMenu()">WORK</a>
+    </nav>
+
+    <!-- CTA BUTTON (right) -->
+    <a class="rr-cta" routerLink="/contact" (click)="closeMenu()" aria-label="Contact Us">
+      Contact Us
+    </a>
+
+    <!-- BURGER (mobile) -->
+    <button
+      class="rr-burger"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen"
+      aria-label="Toggle navigation"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- MOBILE MENU -->
+    <div class="rr-mobile" [class.open]="menuOpen" aria-label="Mobile navigation">
+      <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Home</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Services</a>
+      <a routerLink="/gcc" routerLinkActive="active" (click)="closeMenu()">Work</a>
+      <a class="rr-mobile-cta" routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact Us</a>
+    </div>
+  </div>
+</header>

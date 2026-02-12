@@ -1,0 +1,265 @@
+/* services-section.component.css */
+
+/* Poppins everywhere inside this component */
+:host{
+  display:block;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---------- HERO ---------- */
+.sv-hero{
+  padding: 86px 24px 40px;
+  background: transparent;
+}
+
+.sv-hero__inner{
+  max-width: 1180px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sv-hero__eyebrow{
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ff6b3a;
+  font-weight: 700;
+}
+
+.sv-hero__title{
+  margin: 0 auto 14px;
+  max-width: 980px;
+  font-weight: 800;              /* Syne looks better a notch lighter than 900 */
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  font-size: clamp(44px, 6.2vw, 94px);
+  color: #163a5f;
+}
+
+.sv-hero__title > span{ display:block; }
+
+.sv-hero__accent{
+  color: #ff6b3a;
+}
+
+.sv-hero__lead{
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: clamp(16px, 1.55vw, 20px);
+  line-height: 1.55;
+  color: rgba(22, 58, 95, 0.66);
+  font-weight: 500;
+}
+
+/* ---------- CARDS GRID ---------- */
+.sv-cards{
+  padding: 56px 24px 76px;
+  background: transparent;
+}
+
+.sv-cards__inner{
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sv-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.sv-card{
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 22px;
+  padding: 28px 28px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 20px 60px rgba(16, 42, 67, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.sv-card:hover {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 25px 75px rgba(16, 42, 67, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-6px);
+}
+
+.sv-card__icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 12px 30px rgba(16, 42, 67, 0.10),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.sv-card__icon[data-variant="orange"]{ background: linear-gradient(180deg, #ff7a4c 0%, #ff5a2f 100%); }
+.sv-card__icon[data-variant="blue"]{ background: linear-gradient(180deg, #5a87ff 0%, #2f63ff 100%); }
+.sv-card__icon[data-variant="green"]{ background: linear-gradient(180deg, #33d3a1 0%, #12b981 100%); }
+.sv-card__icon[data-variant="purple"]{ background: linear-gradient(180deg, #c26bff 0%, #8b39ff 100%); }
+.sv-card__icon[data-variant="amber"]{ background: linear-gradient(180deg, #ffb020 0%, #ff7a00 100%); }
+.sv-card__icon[data-variant="red"]{ background: linear-gradient(180deg, #ff5a6b 0%, #ff334f 100%); }
+
+.sv-icon{
+  width: 26px;
+  height: 26px;
+}
+
+.sv-card__title{
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #163a5f;
+}
+
+.sv-card__subtitle{
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #ff6b3a;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.sv-card__desc{
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(22, 58, 95, 0.62);
+  font-weight: 500;
+  max-width: 62ch;
+}
+
+.sv-points{
+  list-style: none;
+  margin: auto 0 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.sv-point{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(22, 58, 95, 0.74);
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.sv-check{
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: #ff6b3a;
+  flex: 0 0 auto;
+}
+
+/* ---------- CTA ---------- */
+.sv-cta{
+  background: #1f3e63;
+  padding: 84px 24px 96px;
+}
+
+.sv-cta__inner{
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sv-cta__title{
+  margin: 0 0 10px;
+  font-size: clamp(58px, 7vw, 112px);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.sv-cta__lead{
+  margin: 0 auto 28px;
+  max-width: 840px;
+  font-size: clamp(18px, 1.9vw, 24px);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.70);
+  font-weight: 500;
+}
+
+.sv-cta__btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 34px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: #ff6b3a;
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+  box-shadow:
+    0 18px 60px rgba(0,0,0,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+.sv-cta__arrow{
+  font-weight: 800;
+  font-size: 20px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1020px){
+  .sv-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px){
+  .sv-hero{ padding-top: 72px; }
+  .sv-grid{ grid-template-columns: 1fr; }
+  .sv-card{ min-height: auto; }
+}
+/* Drop these overrides at the END of your services-section.component.css */
+
+/* HERO headline: slightly taller lines + slightly lighter weight */
+.sv-hero__title{
+  font-weight: 750;
+  line-height: 1.02;         /* was 0.96 */
+  letter-spacing: -0.015em;  /* a bit less tight */
+}
+
+/* Card titles: reduce heaviness + add breathing room */
+.sv-card__title{
+  font-weight: 750;
+  line-height: 1.22;         /* was 1.15 */
+  letter-spacing: -0.005em;
+}
+
+/* CTA headline */
+.sv-cta__title{
+  font-weight: 750;
+  line-height: 1.00;         /* was 0.95 */
+  letter-spacing: -0.015em;
+}
+
+/* Optional: improve body readability with Syne */
+.sv-hero__lead,
+.sv-card__desc,
+.sv-point,
+.sv-cta__lead{
+  font-weight: 550;
+  line-height: 1.65;
+}

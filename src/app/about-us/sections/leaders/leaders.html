@@ -1,0 +1,76 @@
+<section
+  class="uh-leadership"
+  aria-label="UniqueHire leadership team"
+  #leadershipRoot
+>
+  <div class="uh-leadership__inner">
+    <header class="uh-leadership__header">
+      <p class="uh-eyebrow">LEADERSHIP</p>
+      <h2 class="uh-leadership__title">
+        Meet our team of builders and believers.
+      </h2>
+      <p class="uh-leadership__lead">
+        Founders and leaders who drive strategy, delivery, and growth with a people-first approach.
+      </p>
+    </header>
+
+    <div class="uh-leadership__layout">
+      <!-- Left list -->
+      <div class="uh-leadership__list" role="tablist">
+        <button
+          *ngFor="let member of teamMembers"
+          type="button"
+          role="tab"
+          class="uh-leadership-item"
+          [class.is-active]="member.id === activeMemberId"
+          (mouseenter)="selectMember(member.id)"
+        >
+          <span class="uh-leadership-item__name">
+            {{ member.name }}
+          </span>
+          <span class="uh-leadership-item__role">
+            {{ member.role }}
+          </span>
+        </button>
+      </div>
+
+      <!-- Detail card -->
+      <section
+        class="uh-leadership__detail"
+        role="tabpanel"
+        *ngIf="activeMember as m"
+      >
+        <div class="uh-leadership__detail-main">
+          <header class="uh-leadership__detail-header">
+            <h3 class="uh-leadership__detail-name">{{ m.name }}</h3>
+            <p class="uh-leadership__detail-role">
+              {{ m.role }}
+            </p>
+
+            <div class="uh-leadership__tags">
+              <span
+                *ngFor="let tag of m.focusAreas"
+                class="uh-leadership__tag"
+              >
+                {{ tag }}
+              </span>
+            </div>
+          </header>
+
+          <p class="uh-leadership__bio">
+            {{ m.bio }}
+          </p>
+        </div>
+
+        <figure class="uh-leadership__photo-wrap">
+          <img
+            class="uh-leadership__photo"
+            [src]="m.photo"
+            [alt]="m.name"
+            loading="lazy"
+          />
+        </figure>
+      </section>
+    </div>
+  </div>
+</section>

@@ -1,85 +1,76 @@
-<!-- industries.html -->
-<section class="industries-heroCards">
-  <div class="industries-heroCards__bg" aria-hidden="true"></div>
-
-  <div class="industries-heroCards__wrap">
-    <header class="industries-heroCards__head reveal-on-scroll">
+<!-- industries.html (simple, no snap, no observers, no wheel hijack) -->
+<section class="industries">
+  <div class="industries__wrap">
+    <header class="industries__head">
       <span class="kicker">OUR SECTORS</span>
       <h2 class="title">Industries we serve<span class="dot">.</span></h2>
       <p class="sub">
         Tailored technology and talent solutions across diverse sectors, helping businesses navigate complexity and achieve digital excellence.
       </p>
     </header>
-  </div>
 
-  <!-- Vertical Snap Scroll Container -->
-  <div class="industries-scroll-container" #scrollContainer>
-    <div class="industries-cards-wrapper">
-      <article class="heroCard reveal-on-scroll">
-      <img class="heroCard__img" src="assets/indushealth.jpeg" alt="Healthcare & Life Sciences" loading="lazy" />
-      <div class="heroCard__overlay" aria-hidden="true"></div>
-
-      <div class="heroCard__content">
-        <h3 class="heroCard__title">Healthcare & Life Sciences</h3>
-        <p class="heroCard__desc">
-          Digital health platforms, telemedicine workflows, and analytics that improve outcomes and operational velocity.
-        </p>
-        <div class="heroCard__chips">
-          <span class="chip">Telemed</span>
-          <span class="chip">Data</span>
-          <span class="chip">Security</span>
+    <div class="industries__grid">
+      <article class="heroCard">
+        <img class="heroCard__img" src="assets/indushealth.jpeg" alt="Healthcare & Life Sciences" loading="lazy" />
+        <div class="heroCard__overlay" aria-hidden="true"></div>
+        <div class="heroCard__content">
+          <h3 class="heroCard__title">Healthcare & Life Sciences</h3>
+          <p class="heroCard__desc">
+            Digital health platforms, telemedicine workflows, and analytics that improve outcomes and operational velocity.
+          </p>
+          <div class="heroCard__chips">
+            <span class="chip">Telemed</span>
+            <span class="chip">Data</span>
+            <span class="chip">Security</span>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="heroCard heroCard--tint reveal-on-scroll">
-      <img class="heroCard__img" src="assets/indusbank.jpeg" alt="Banking & Finance" loading="lazy" />
-      <div class="heroCard__overlay" aria-hidden="true"></div>
-
-      <div class="heroCard__content">
-        <h3 class="heroCard__title">Banking & Finance</h3>
-        <p class="heroCard__desc">
-          Cloud modernization, fintech automation, and resilient systems that keep risk low and trust high.
-        </p>
-        <div class="heroCard__chips">
-          <span class="chip">Cloud</span>
-          <span class="chip">Compliance</span>
+      <article class="heroCard heroCard--tint">
+        <img class="heroCard__img" src="assets/indusbank.jpeg" alt="Banking & Finance" loading="lazy" />
+        <div class="heroCard__overlay" aria-hidden="true"></div>
+        <div class="heroCard__content">
+          <h3 class="heroCard__title">Banking & Finance</h3>
+          <p class="heroCard__desc">
+            Cloud modernization, fintech automation, and resilient systems that keep risk low and trust high.
+          </p>
+          <div class="heroCard__chips">
+            <span class="chip">Cloud</span>
+            <span class="chip">Compliance</span>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="heroCard reveal-on-scroll">
-      <img class="heroCard__img" src="assets/indusretail.jpeg" alt="Retail & E-commerce" loading="lazy" />
-      <div class="heroCard__overlay" aria-hidden="true"></div>
-
-      <div class="heroCard__content">
-        <h3 class="heroCard__title">Retail & E-commerce</h3>
-        <p class="heroCard__desc">
-          Scalable commerce, personalization, and supply chain visibility for faster, smarter growth.
-        </p>
-        <div class="heroCard__chips">
-          <span class="chip">Personalization</span>
-          <span class="chip">Analytics</span>
+      <article class="heroCard">
+        <img class="heroCard__img" src="assets/indusretail.jpeg" alt="Retail & E-commerce" loading="lazy" />
+        <div class="heroCard__overlay" aria-hidden="true"></div>
+        <div class="heroCard__content">
+          <h3 class="heroCard__title">Retail & E-commerce</h3>
+          <p class="heroCard__desc">
+            Scalable commerce, personalization, and supply chain visibility for faster, smarter growth.
+          </p>
+          <div class="heroCard__chips">
+            <span class="chip">Personalization</span>
+            <span class="chip">Analytics</span>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="heroCard reveal-on-scroll">
-      <img class="heroCard__img" src="assets/indusdev.jpeg" alt="Technology & Software" loading="lazy" />
-      <div class="heroCard__overlay" aria-hidden="true"></div>
-
-      <div class="heroCard__content">
-        <h3 class="heroCard__title">Technology & Software</h3>
-        <p class="heroCard__desc">
-          Product engineering, AI integration, and delivery velocity through high performing teams.
-        </p>
-        <div class="heroCard__chips">
-          <span class="chip">AI</span>
-          <span class="chip">SaaS</span>
-          <span class="chip">Delivery</span>
+      <article class="heroCard">
+        <img class="heroCard__img" src="assets/indusdev.jpeg" alt="Technology & Software" loading="lazy" />
+        <div class="heroCard__overlay" aria-hidden="true"></div>
+        <div class="heroCard__content">
+          <h3 class="heroCard__title">Technology & Software</h3>
+          <p class="heroCard__desc">
+            Product engineering, AI integration, and delivery velocity through high performing teams.
+          </p>
+          <div class="heroCard__chips">
+            <span class="chip">AI</span>
+            <span class="chip">SaaS</span>
+            <span class="chip">Delivery</span>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
     </div>
   </div>
 </section>

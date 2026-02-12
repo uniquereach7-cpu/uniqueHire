@@ -5,16 +5,13 @@
 .mission-arc-section {
   position: relative;
   width: 100%;
-  min-height: 300vh; /* Extended for scroll timeline */
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 50%, #ffffff 100%);
-  overflow: hidden;
+  overflow: visible;
 }
 
-/* Arc Container - Fixed during scroll */
+/* Arc Container - Pinned by ScrollTrigger */
 .arc-container {
-  position: sticky;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -23,7 +20,6 @@
   overflow: visible;
   pointer-events: none;
 }
-
 /* SVG Arc Styling */
 .arc-svg {
   position: absolute;
@@ -69,7 +65,8 @@
   transform-origin: center center;
   pointer-events: auto;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Inner vignette effect */
@@ -124,7 +121,6 @@
 
 /* Active state for centered node */
 .node-circle.active {
-  transform: scale(1.05);
   box-shadow: 
     0 25px 80px rgba(107, 43, 224, 0.15),
     0 10px 30px rgba(0, 0, 0, 0.08),
@@ -159,7 +155,8 @@
   transform: translateX(-50%);
   width: 100%;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .content-text p {
@@ -176,11 +173,13 @@
 
 .content-text.active {
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-/* Scroll Spacer */
+/* Scroll Spacer - Created automatically by ScrollTrigger pinSpacing */
 .scroll-spacer {
-  height: 200vh;
+  height: 0;
   pointer-events: none;
 }
 
@@ -227,10 +226,6 @@
 
 /* Mobile */
 @media (max-width: 768px) {
-  .mission-arc-section {
-    min-height: 250vh;
-  }
-  
   .node-circle {
     width: 140px;
     height: 140px;

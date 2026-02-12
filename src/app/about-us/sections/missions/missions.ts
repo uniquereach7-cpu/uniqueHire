@@ -47,112 +47,101 @@ export class Missions implements AfterViewInit, OnDestroy {
     }
 
     const section = this.arcSection.nativeElement;
-    const path = this.arcPath.nativeElement;
+    const arcPath = this.arcPath.nativeElement;
     const nodes = [
-      this.node1.nativeElement,
-      this.node2.nativeElement,
-      this.node3.nativeElement
+      this.node1.nativeElement, // Vision
+      this.node2.nativeElement, // Mission
+      this.node3.nativeElement // Values
     ];
-    const textElements = [
-      this.visionText.nativeElement,
-      this.missionText.nativeElement,
-      this.valuesText.nativeElement
-    ];
-
-    // Get path length for calculations
-    const pathLength = path.getTotalLength();
-
-    // Calculate positions along the path (0%, 50%, 100%)
-    const positions = [0, 0.5, 1];
+    const visionText = this.visionText.nativeElement;
+    const missionText = this.missionText.nativeElement;
+    const valuesText = this.valuesText.nativeElement;
 
     this.ctx = gsap.context(() => {
-      // Create main timeline
+      // Ensure initial positions (center nodes at xPercent/yPercent for proper alignment)
+      nodes.forEach(n => gsap.set(n, { xPercent: -50, yPercent: -50, autoAlpha: 0 }));
+
+      // Helper to toggle active classes (0 = vision, 1 = mission, 2 = values)
+      const setActive = (index: number) => {
+        nodes.forEach((n, i) => n.classList.toggle('active', i === index));
+        visionText.classList.toggle('active', index === 0);
+        missionText.classList.toggle('active', index === 1);
+        valuesText.classList.toggle('active', index === 2);
+      };
+
+      // Create scrubbed timeline and pin the section
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: 'bottom bottom',
+          // 3 segments -> use 300% to give one viewport-length per node; tune as needed
+          end: '+=300%',
           scrub: 1,
-          pin: false,
+          pin: true,
           anticipatePin: 1,
-          onUpdate: (self) => {
-            this.updateActiveNode(self.progress, nodes, textElements);
-          }
+          pinSpacing: true,
+          invalidateOnRefresh: true
         }
       });
 
-      // Animate each node along the path
-      nodes.forEach((node, index) => {
-        const startProgress = positions[index];
-        const endProgress = positions[index === nodes.length - 1 ? index : index + 1] || 1;
+      // SEQUENCE: Mission (node2) -> Vision (node1) -> Values (node3)
+      // Each block moves the node from path start -> about center (start:0 -> end:0.5),
+      // fades it in while moving, then fades it out (so only one is visible at a time).
 
-        // Get start and end points on the path
-        const startPoint = path.getPointAtLength(startProgress * pathLength);
-        const endPoint = path.getPointAtLength(endProgress * pathLength);
+      // 1) Mission (node2)
+      tl.to(nodes[1], {
+        motionPath: {
+          path: arcPath,
+          align: arcPath,
+          alignOrigin: [0.5, 0.5],
+          start: 0,
+          end: 0.5
+        },
+        autoAlpha: 1,
+        scale: 1.05,
+        ease: 'none',
+        duration: 1
+      }, 0)
+        .call(() => setActive(1))
+        // small fade-out after center so next node can take focus
+        .to(nodes[1], { autoAlpha: 0, scale: 0.95, duration: 0.18, ease: 'power1.in' }, '>-0.05');
 
-        // Set initial position
-        gsap.set(node, {
-          x: startPoint.x - 100, // offset for node center (half of node width)
-          y: startPoint.y - 100,  // offset for node center (half of node height)
-          rotation: 0,
-          transformOrigin: 'center center'
-        });
+      // 2) Vision (node1) - starts AFTER mission finishes
+      tl.to(nodes[0], {
+        motionPath: {
+          path: arcPath,
+          align: arcPath,
+          alignOrigin: [0.5, 0.5],
+          start: 0,
+          end: 0.5
+        },
+        autoAlpha: 1,
+        scale: 1.05,
+        ease: 'none',
+        duration: 1
+      }, '>-0.02')
+        .call(() => setActive(0))
+        .to(nodes[0], { autoAlpha: 0, scale: 0.95, duration: 0.18, ease: 'power1.in' }, '>-0.05');
 
-        // Animate along path using MotionPath
-        tl.to(node, {
-          motionPath: {
-            path: path,
-            align: path,
-            alignOrigin: [0.5, 0.5],
-            autoRotate: false
-          },
-          duration: 1,
-          ease: 'none'
-        }, index * 0.5);
-
-        // Add subtle rotation as nodes move
-        tl.to(node, {
-          rotation: index % 2 === 0 ? 5 : -5,
-          duration: 1,
-          ease: 'sine.inOut'
-        }, index * 0.5);
-      });
+      // 3) Values (node3)
+      tl.to(nodes[2], {
+        motionPath: {
+          path: arcPath,
+          align: arcPath,
+          alignOrigin: [0.5, 0.5],
+          start: 0,
+          end: 0.5
+        },
+        autoAlpha: 1,
+        scale: 1.05,
+        ease: 'none',
+        duration: 1
+      }, '>-0.02')
+        .call(() => setActive(2));
 
     }, section);
-  }
 
-  private updateActiveNode(
-    progress: number,
-    nodes: HTMLElement[],
-    textElements: HTMLElement[]
-  ): void {
-    // Determine which node should be active based on scroll progress
-    let activeIndex = 0;
-    
-    if (progress < 0.33) {
-      activeIndex = 0; // Vision
-    } else if (progress < 0.66) {
-      activeIndex = 1; // Mission
-    } else {
-      activeIndex = 2; // Core Values
-    }
-
-    // Update active classes for nodes
-    nodes.forEach((node, index) => {
-      if (index === activeIndex) {
-        node.classList.add('active');
-      } else {
-        node.classList.remove('active');
-      }
-    });
-
-    // Update active classes for text content
-    textElements.forEach((text, index) => {
-      if (index === activeIndex) {
-        text.classList.add('active');
-      } else {
-        text.classList.remove('active');
-      }
-    });
+    // Ensure ScrollTrigger recalculates on resize
+    ScrollTrigger.refresh();
   }
 }

@@ -63,7 +63,7 @@ html, body {
 @media (max-width: 719px) { .hero-media { height: 260px; } .hero-content { width: 92%; margin-top: 16px; padding: 16px 18px; } .hero-title { font-size: 20px; } .hero-desc { font-size: 14px; } .hero-stats { grid-template-columns: 1fr; gap: 10px; } .stat-value { font-size: 22px; } }
 
 /* TEAM */
-.team-section { padding: 42px 16px 60px; background: #fff; }
+.team-section { padding: 42px 16px 0; background: #fff; }
 .container { max-width: 1200px; margin: 0 auto; }
 .team-heading { text-align: center; color: #003d77; font-size: 28px; margin: 0 0 8px; font-weight: 700; }
 .team-intro { text-align: center; color: #000; margin: 0 0 28px; font-size: 15px; }

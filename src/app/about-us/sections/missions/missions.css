@@ -4,9 +4,11 @@
 
 .mission-arc-section {
   overflow-x: hidden; /* hides any horizontal overflow coming from big node circles */
+  overflow-y: hidden;
   position: relative;
   width: 100%;
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 50%, #ffffff 100%);
+  margin-top: -40px;
 }
 
 /* Arc Container - Pinned by ScrollTrigger */
@@ -292,4 +294,20 @@
   .scroll-spacer {
     display: none;
   }
+}
+/* Hide scrollbars ONLY inside About page */
+.about-page {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Chrome, Edge, Safari */
+.about-page::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }

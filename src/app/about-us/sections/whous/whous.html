@@ -1,29 +1,83 @@
-<section class="who-section" aria-labelledby="whoHeading">
-  <div class="container">
-    <div class="who-grid">
-      <div class="who-content">
-        <h2 id="whoHeading" class="section-title">Who We Are &amp; What We Do</h2>
+<section class="whoX" aria-labelledby="whoHeading">
+  <div class="whoX__container">
+    <div class="whoX__grid">
 
-        <p class="who-lead">
-          UniqueHire is a digital transformation IT consulting and services company established by recruitment and technology leaders. 
-          We deliver tailored staffing, IT consulting, and digital transformation services that align people and technology to business outcomes.
+      <div class="whoX__left">
+        <p class="whoX__kicker" appScrollAnimate="fade-in">ABOUT UNIQUEHIRE</p>
+
+        <h2 id="whoHeading" class="whoX__title" appScrollAnimate="fall-down">
+          Who we are<span class="whoX__dot">.</span>
+        </h2>
+
+        <p class="whoX__lead" appScrollAnimate="fade-in">
+          Digital transformation partner for staffing, consulting, and delivery, built by recruitment and technology leaders.
         </p>
 
-        <p>
-          Our mission is to bridge the gap between organizations and talent through innovative staffing solutions and technology-driven strategies. 
-          We focus on helping businesses scale efficiently, achieve operational excellence, and embrace digital growth.
-        </p>
+        <!-- No "cards": use a rail / timeline layout -->
+        <div class="whoX__rail" appScrollAnimate="slide-left">
+          <div class="whoX__railLine" aria-hidden="true"></div>
 
-        <ul class="who-list">
-          <li><strong>Staffing & Recruitment:</strong> From IT specialists to leadership roles, we connect the right talent with the right opportunities.</li>
-          <li><strong>Technology Consulting:</strong> We assist companies in modernizing their systems, improving productivity, and embracing automation.</li>
-          <li><strong>Learning & Development:</strong> Through training programs and partnerships, we prepare professionals for the evolving tech landscape.</li>
-        </ul>
+          <div class="whoX__railItem">
+            <div class="whoX__railMark" aria-hidden="true">
+              <span class="whoX__railNum">01</span>
+            </div>
+            <div class="whoX__railBody">
+              <div class="whoX__railHead">
+                <span class="whoX__railTitle">Staffing</span>
+                <span class="whoX__railTag">Talent</span>
+              </div>
+              <p class="whoX__railText">Specialists to leadership, fast and high-signal.</p>
+            </div>
+          </div>
+
+          <div class="whoX__railItem">
+            <div class="whoX__railMark" aria-hidden="true">
+              <span class="whoX__railNum">02</span>
+            </div>
+            <div class="whoX__railBody">
+              <div class="whoX__railHead">
+                <span class="whoX__railTitle">Consulting</span>
+                <span class="whoX__railTag">Systems</span>
+              </div>
+              <p class="whoX__railText">Modernize platforms, automate workflows, ship reliably.</p>
+            </div>
+          </div>
+
+          <div class="whoX__railItem">
+            <div class="whoX__railMark" aria-hidden="true">
+              <span class="whoX__railNum">03</span>
+            </div>
+            <div class="whoX__railBody">
+              <div class="whoX__railHead">
+                <span class="whoX__railTitle">Delivery</span>
+                <span class="whoX__railTag">Execution</span>
+              </div>
+              <p class="whoX__railText">End-to-end ownership with measurable outcomes.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="who-media">
-        <img src="/assets/team14.JPG" alt="UniqueHire team collaborating" class="who-image">
+      <div class="whoX__right" appScrollAnimate="slide-right">
+        <div class="whoX__media">
+          <div class="whoX__mediaFrame">
+            <img class="whoX__img" src="assets/team14.JPG" alt="UniqueHire team collaborating" loading="lazy" />
+            <div class="whoX__mediaFade" aria-hidden="true"></div>
+          </div>
+
+          <!-- Floating labels instead of a caption bar -->
+          <div class="whoX__float whoX__float--top" aria-hidden="true">
+            <span class="whoX__floatDot"></span>
+            Delivery-first teams
+          </div>
+
+          <div class="whoX__float whoX__float--bottom" aria-hidden="true">
+            <span class="whoX__floatDot"></span>
+            Advice backed by execution
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>

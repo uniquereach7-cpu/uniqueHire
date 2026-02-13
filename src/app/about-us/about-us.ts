@@ -2,10 +2,11 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, NgZone } fr
 import { CommonModule } from '@angular/common';
 import {Leaders} from '../about-us/sections/leaders/leaders.component'
 import { Missions } from './sections/missions/missions';
+import { whous} from './sections/whous/whous.component'
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule,Leaders,Missions],
+  imports: [CommonModule,Leaders,Missions,whous],
   templateUrl: './about-us.html',
   styleUrls: ['./about-us.css'],
 })

@@ -1,54 +1,46 @@
-<section class="services-section">
-  <div class="services-container">
-    
-    <div class="services-intro">
-      <span class="sub-heading" appScrollAnimate="fade-in">OUR EXPERTISE</span>
-      <h2 class="main-heading" appScrollAnimate="slide-up">
-        Solutions That <br>
-        <span class="highlight-orange">Drive Growth</span>
-      </h2>
-      <p class="intro-description" appScrollAnimate="fade-in" [delay]="200">
-        At the heart of our services lies ExcelShore®, our in-house platform that transforms the delivery ecosystem.
-      </p>
+<section class="svc">
+  <div class="svc__inner">
+
+    <!-- Section header -->
+    <div class="svc__header">
+      <span class="svc__kicker">OUR EXPERTISE</span>
+      <div class="svc__header-row">
+        <h2 class="svc__title">Solutions That <em class="svc__em">Drive Growth</em></h2>
+        <a href="/services" class="svc__view-all">View all services →</a>
+      </div>
     </div>
 
-    <div class="services-list">
-      
-      <div class="card" appScrollAnimate="slide-up">
-        <img src="assets/talentsolutions.jpeg" alt="Talent Solutions" class="card__image">
-        <div class="card__content">
-          <p class="card__title">Talent Solutions</p>
-          <p class="card__description">AI-driven talent platform: sourcing, screening, onboarding and continuous engagement.</p>
-        </div>
-      </div>
+    <!-- Accordion service rows -->
+    <div class="svc__list">
+      @for (svc of services; track svc.num; let i = $index) {
+        <div
+          class="svc__row"
+          [class.svc__row--active]="activeIndex === i"
+          (click)="setActive(i)"
+          (mouseenter)="setActive(i)"
+        >
+          <!-- Row header: number + name + arrow -->
+          <div class="svc__row-head">
+            <span class="svc__num">{{ svc.num }}</span>
+            <div class="svc__meta">
+              <h3 class="svc__name">{{ svc.title }}</h3>
+              <span class="svc__tag">{{ svc.tag }}</span>
+            </div>
+            <span class="svc__arrow">↗</span>
+          </div>
 
-      <div class="card" appScrollAnimate="slide-up" [delay]="150">
-        <img src="assets/technology.jpeg" alt="Technology Consulting" class="card__image">
-        <div class="card__content">
-          <p class="card__title">Technology Consulting</p>
-          <p class="card__description">Modernizing systems, improving productivity, and embracing automation for your business.</p>
+          <!-- Expandable content: desc + thumbnail -->
+          <div class="svc__expand">
+            <div class="svc__expand-inner">
+              <p class="svc__desc">{{ svc.desc }}</p>
+              <div class="svc__thumb">
+                <img [src]="svc.img" [alt]="svc.title">
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="card" appScrollAnimate="slide-up" [delay]="300">
-        <img src="assets/GCC.png" alt="GCC Setup" class="card__image">
-        <div class="card__content">
-          <p class="card__title">GCC Setup</p>
-          <p class="card__description">End-to-end support for establishing your Global Capability Center in strategic locations.</p>
-        </div>
-      </div>
-
-      <div class="card" appScrollAnimate="slide-up" [delay]="150">
-        <img src="assets/learning.jpeg" alt="Learning & Development" class="card__image">
-        <div class="card__content">
-          <p class="card__title">Learning & Development</p>
-          <p class="card__description">Training programs and partnerships preparing professionals for the evolving tech landscape.</p>
-        </div>
-      </div>
-
+      }
     </div>
-     <a href="/services" class="btn-explore" appScrollAnimate="fade-in" [delay]="300">
-        Explore All Services <span class="arrow">→</span>
-      </a>
+
   </div>
 </section>

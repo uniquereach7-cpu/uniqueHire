@@ -1,164 +1,170 @@
-/* --- Main Background Section --- */
-.industries-section {
-  background-color: #072b4f; /* The dark navy blue from the screenshot */
-  padding: 80px 5%;
-  font-family: 'Poppins', sans-serif;
+:host { display: block; }
+
+.ind {
+  background: #0b1525;
+  padding: 110px 10%;
+  font-family: var(--font-body, 'Poppins', sans-serif);
   overflow: hidden;
-  border-radius: 100px
 }
 
-.section-main-title {
-  color: #ffffff;
-  text-align: center;
-  font-size: 36px;
+.ind__inner { max-width: 1200px; margin: 0 auto; }
+
+/* Header */
+.ind__header { margin-bottom: 64px; }
+
+.ind__kicker {
+  display: block;
+  font-size: 11px;
   font-weight: 700;
-  margin: 0 0 40px 0;
+  letter-spacing: 3px;
+  color: #ff7f50;
+  margin-bottom: 16px;
 }
 
-/* --- The Large White Box --- */
-.industries-container {
-  background-color: #f7f9fc; /* Soft off-white to match the reference */
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 80px; /* Big rounded corners */
-  padding: 60px 5%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+.ind__title {
+  font-size: clamp(44px, 6.5vw, 88px);
+  color: #ffffff;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  line-height: 0.98;
 }
 
-.container-subtitle {
-  color: #072b4f;
-  text-align: center;
-  font-size: 26px;
-  font-weight: 600;
-  max-width: 700px;
-  margin: 0 auto 50px auto;
-  line-height: 1.4;
+.ind__em {
+  font-style: normal;
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 2px #ff7f50;
 }
 
-/* --- The Grid & Individual Cards --- */
-.industries-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-bottom: 50px;
-}
-
-/* --- Updated Card Container --- */
-.industry-card {
-  background: #ffffff;
-  padding: 0; /* Removed the 30px padding so the image can touch the edges */
-  border-radius: 20px;
-  overflow: hidden; /* This forces the top corners of the image to round off perfectly */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); 
-  border: 1px solid #eef1f6;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.industry-card:hover {
-  transform: translateY(-8px); 
-  box-shadow: 0 15px 35px rgba(7, 43, 79, 0.1); 
-  border-color: #d1dce8;
-}
-
-/* --- Updated Full-Width Image --- */
-.industry-img {
-  width: 100%; /* Forces the image to span the entire width of the card */
-  height: 200px; /* Adjust this height to whatever looks best for your photos */
-  object-fit: cover; /* Prevents the image from squishing or stretching */
-  display: block; /* Removes the tiny default gap under images */
-  margin-bottom: 25px; /* Space between the image and the title */
-  border-radius: 0; /* Let the card container handle the rounded corners */
-  box-shadow: none; 
-}
-
-/* --- Adjusted Text Padding --- */
-/* Because we removed padding from the card, we add it to the text directly */
-.industry-title {
-  font-size: 20px;
-  color: #072b4f;
-  margin: 0 0 12px 0;
-  font-weight: 600;
-  padding: 0 25px; /* Side padding */
-}
-
-.industry-desc {
-  font-size: 14.5px;
-  color: #666;
-  line-height: 1.6;
+.ind__sub {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.45);
   margin: 0;
-  padding: 0 25px 30px 25px; /* Side and bottom padding */
 }
 
-/* --- Bottom Buttons --- */
-.button-group {
+/* Layout */
+.ind__layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* List */
+.ind__list {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ind__item {
+  display: flex;
   align-items: center;
   gap: 20px;
-}
-
-.btn-primary, .btn-secondary {
-  padding: 14px 32px;
-  border-radius: 8px; /* Matches the slightly rounded buttons in the screenshot */
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  padding: 26px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   cursor: pointer;
+  transition: padding-left 0.3s ease;
+}
+.ind__item:hover,
+.ind__item--active { padding-left: 8px; }
+
+.ind__num {
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: 34px;
+  color: rgba(255, 255, 255, 0.10);
+  line-height: 1;
+  width: 48px;
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+.ind__item--active .ind__num { color: #ff7f50; }
+
+.ind__name {
+  flex: 1;
+  font-size: clamp(20px, 2.4vw, 32px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.38);
+  transition: color 0.3s ease;
+}
+.ind__item--active .ind__name { color: #ffffff; }
+
+.ind__arrow {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.14);
+  transform: translateX(-6px);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.ind__item--active .ind__arrow {
+  color: #ff7f50;
+  transform: translateX(0);
 }
 
-.btn-primary {
-  background-color: #072b4f;
+/* Preview */
+.ind__preview {
+  position: sticky;
+  top: 110px;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ind__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.ind__slide--active { opacity: 1; }
+
+.ind__slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ind__slide-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, transparent 100%);
+}
+
+.ind__slide-name {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
   color: #ffffff;
-  border: 2px solid #072b4f;
+  margin-bottom: 6px;
 }
 
-.btn-primary:hover {
-  background-color: #0a3d70; /* Slightly lighter blue on hover */
-  border-color: #0a3d70;
-  transform: translateY(-2px);
+.ind__slide-desc {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.70);
+  margin: 0;
+  line-height: 1.55;
 }
 
-.btn-secondary {
-  background-color: transparent;
-  color: #072b4f;
-  border: 2px solid #072b4f;
-}
-
-.btn-secondary:hover {
-  background-color: #072b4f;
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 992px) {
-  .industries-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+/* Responsive */
+@media (max-width: 960px) {
+  .ind__layout {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
+  .ind__preview {
+    position: static;
+    height: 280px;
   }
 }
 
-@media (max-width: 768px) {
-  .industries-container {
-    padding: 40px 20px;
-    border-radius: 25px;
-  }
-  
-  .container-subtitle {
-    font-size: 22px;
-  }
-
-  .industries-grid {
-    grid-template-columns: 1fr; /* 1 column on mobile phones */
-  }
-  
-  .button-group {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    text-align: center;
-  }
+@media (max-width: 600px) {
+  .ind { padding: 80px 6%; }
+  .ind__item { padding: 20px 0; }
+  .ind__num { font-size: 28px; width: 38px; }
 }

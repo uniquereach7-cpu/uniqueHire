@@ -1,80 +1,112 @@
-import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
-import { ScrollAnimateDirective } from '../../directives/scroll-animate.directive';
+import { Component, OnInit, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 @Component({
   selector: 'app-homeaboutus',
-  imports: [ScrollAnimateDirective], 
+  imports: [],
   templateUrl: './homeaboutus.html',
   styleUrl: './homeaboutus.css',
 })
-export class Homeaboutus implements OnInit, OnDestroy {
-  // 1. All THREE variables bound to your HTML
-  clientsCount: number = 0;
+export class Homeaboutus implements OnInit, AfterViewInit, OnDestroy {
+  clientsCount:   number = 0;
   employeesCount: number = 0;
-  yearsCount: number = 0; // <-- Added this!
+  yearsCount:     number = 0;
 
-  // 2. Set your actual final target numbers here 
-  private readonly clientsTarget = 500;   
-  private readonly employeesTarget = 1000; 
-  private readonly yearsTarget = 20;      // <-- Added this!
+  private readonly clientsTarget   = 500;
+  private readonly employeesTarget = 1000;
+  private readonly yearsTarget     = 30;
 
   private observer: IntersectionObserver | undefined;
+  private scrollTriggers: ScrollTrigger[] = [];
+  private counted = false;
 
   constructor(private el: ElementRef) {}
 
-  ngOnInit() {
-    this.setupIntersectionObserver();
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    gsap.registerPlugin(ScrollTrigger);
+    this.setupCounterObserver();
+    this.setupGsapReveal();
   }
 
-  ngOnDestroy() {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
+    this.scrollTriggers.forEach(t => t.kill());
   }
 
-  private setupIntersectionObserver() {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.3 
-    };
-
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // 3. Trigger all THREE counting animations! 
-          this.animateCount('clientsCount', this.clientsTarget, 2000);
-          this.animateCount('employeesCount', this.employeesTarget, 2500);
-          this.animateCount('yearsCount', this.yearsTarget, 1500); // <-- Added this!
-          
-          this.observer?.unobserve(entry.target); 
-        }
-      });
-    }, options);
-
-    const section = this.el.nativeElement.querySelector('#about-stats-section');
-    if (section) {
-      this.observer.observe(section);
-    }
+  /* Intersection observer triggers the counting animation */
+  private setupCounterObserver(): void {
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.counted) {
+            this.counted = true;
+            this.animateCount('clientsCount',   this.clientsTarget,   2000);
+            this.animateCount('employeesCount', this.employeesTarget, 2400);
+            this.animateCount('yearsCount',     this.yearsTarget,     1600);
+            this.observer?.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, threshold: 0.25 }
+    );
+    this.observer.observe(this.el.nativeElement);
   }
 
-  // 4. Updated the allowed property names to include 'yearsCount'
-  private animateCount(property: 'clientsCount' | 'employeesCount' | 'yearsCount', target: number, duration: number) {
-    let startTimestamp: number | null = null;
-    
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
-      this[property] = Math.floor(progress * target);
-      
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        this[property] = target; 
+  /* GSAP stagger reveal for stat numbers */
+  private setupGsapReveal(): void {
+    const nums = this.el.nativeElement.querySelectorAll('.about__stat');
+    gsap.fromTo(
+      nums,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.15,
+        duration: 0.85,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: this.el.nativeElement.querySelector('.about__stats'),
+          start: 'top 78%',
+          once: true,
+        },
       }
+    );
+
+    const top = this.el.nativeElement.querySelectorAll('.about__top-left, .about__top-right');
+    gsap.fromTo(
+      top,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.2,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: this.el.nativeElement,
+          start: 'top 80%',
+          once: true,
+        },
+      }
+    );
+  }
+
+  private animateCount(
+    property: 'clientsCount' | 'employeesCount' | 'yearsCount',
+    target: number,
+    duration: number
+  ): void {
+    let start: number | null = null;
+    const step = (ts: number) => {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      this[property] = Math.floor(progress * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else this[property] = target;
     };
-    
-    window.requestAnimationFrame(step);
+    requestAnimationFrame(step);
   }
 }

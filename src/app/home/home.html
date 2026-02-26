@@ -1,78 +1,75 @@
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-<section class="hero-container">
-  <div class="hero-content">
-    
-    <div class="badge-pill" appScrollAnimate="fade-in">
-      Since 1995 • 30 Years of Excellence
+<section class="hero">
+  <!-- Parallax background layer -->
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <!-- Main content -->
+  <div class="hero__content">
+    <div class="hero__badge">
+      <span class="hero__badge-dot"></span>
+      Since 1995 &nbsp;·&nbsp; 30 Years of Excellence
     </div>
 
-    <h1 class="hero-title" appScrollAnimate="fall-down">
-      Innovate <br>
-      <span class="highlight-orange">Better,</span> <br>
-      Move <br>
-      Faster
+    <h1 class="hero__title">
+      INNOVATE<br>
+      <em class="hero__title-em">BETTER,</em><br>
+      MOVE<br>
+      FASTER
     </h1>
 
-    <p class="hero-description" appScrollAnimate="fade-in" [delay]="200">
-      Unlock the secrets of product engineering with our team — build faster, ship smarter with UniqueHire.
+    <p class="hero__sub">
+      Unlock the secrets of product engineering — build faster,<br>ship smarter with UniqueHire.
     </p>
 
-    <!-- <div class="hero-actions">
-      <button class="btn-primary">
-        Know How <span class="arrow">→</span>
-      </button>
-      <button class="btn-secondary">
-        Let's Talk <span class="arrow">→</span>
-      </button>
-    </div> -->
+    <div class="hero__actions">
+      <a routerLink="/contact" class="hero__btn hero__btn--primary">Let's Talk →</a>
+      <a routerLink="/services" class="hero__btn hero__btn--secondary">Our Services</a>
+    </div>
   </div>
 
-  <!-- <div class="hero-visual">
-    <div class="main-image-wrapper">
-      <img src="assets/hero.jpg" alt="Abstract Engineering Graphic" class="main-img">
-      
-      <div class="floating-card card-left">
-        <div class="icon-box green">
-          <svg class="sv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="6"/>
-                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-          </svg>
-        </div>
-        <div class="card-text">
-          <span class="stat">95%</span>
-          <span class="label">Client Retention</span>
-        </div>
-      </div>
-
-      <div class="floating-card card-right">
-        <div class="icon-box orange">
-          <svg class="sv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="card-text">
-          <span class="stat">7,200+</span>
-          <span class="label">Professionals</span>
-        </div>
-      </div>
+  <!-- Bottom stats strip -->
+  <div class="hero__stats-bar">
+    <div class="hero__stat">
+      <span class="hero__stat-num">95%</span>
+      <span class="hero__stat-label">Client Retention</span>
     </div>
-  </div> -->
+    <div class="hero__stat-div" aria-hidden="true"></div>
+    <div class="hero__stat">
+      <span class="hero__stat-num">500+</span>
+      <span class="hero__stat-label">Valued Clients</span>
+    </div>
+    <div class="hero__stat-div" aria-hidden="true"></div>
+    <div class="hero__stat">
+      <span class="hero__stat-num">1000+</span>
+      <span class="hero__stat-label">Committed Employees</span>
+    </div>
+    <div class="hero__stat-div" aria-hidden="true"></div>
+    <div class="hero__stat">
+      <span class="hero__stat-num">30+</span>
+      <span class="hero__stat-label">Years Experience</span>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="hero__scroll-cue" aria-hidden="true">
+    <div class="hero__scroll-line"></div>
+  </div>
 </section>
+
 <app-homeaboutus></app-homeaboutus>
 <app-homeservice></app-homeservice>
 <app-homegcc></app-homegcc>
 <app-homeindustries></app-homeindustries>
-<section class="clients-section">
-  <div class="clients-container">
-    <div class="clients-header">
-      <span class="sub-heading" appScrollAnimate="fade-in">TRUSTED BY LEADERS</span>
-      <h2 class="main-heading" appScrollAnimate="slide-left">Enterprises That <span class="highlight-orange">Trust Us</span></h2>
+
+<!-- Trusted clients marquee -->
+<section class="clients">
+  <div class="clients__inner">
+    <div class="clients__header">
+      <span class="clients__kicker">TRUSTED BY LEADERS</span>
+      <h2 class="clients__title">Enterprises That <em class="hl-orange">Trust Us</em></h2>
     </div>
 
-    <div class="marquee-wrapper">
+    <div class="marquee-wrap">
       <div class="marquee-track">
         <div class="logo-group">
           <img src="assets/clients/logo1.png" alt="Client 1">
@@ -82,13 +79,13 @@
           <img src="assets/clients/logo5.png" alt="Client 5">
           <img src="assets/clients/logo6.png" alt="Client 6">
         </div>
-        <div class="logo-group">
-          <img src="assets/clients/logo1.png" alt="Client 1">
-          <img src="assets/clients/logo2.png" alt="Client 2">
-          <img src="assets/clients/logo3.png" alt="Client 3">
-          <img src="assets/clients/logo4.png" alt="Client 4">
-          <img src="assets/clients/logo5.png" alt="Client 5">
-          <img src="assets/clients/logo6.png" alt="Client 6">
+        <div class="logo-group" aria-hidden="true">
+          <img src="assets/clients/logo1.png" alt="">
+          <img src="assets/clients/logo2.png" alt="">
+          <img src="assets/clients/logo3.png" alt="">
+          <img src="assets/clients/logo4.png" alt="">
+          <img src="assets/clients/logo5.png" alt="">
+          <img src="assets/clients/logo6.png" alt="">
         </div>
       </div>
     </div>

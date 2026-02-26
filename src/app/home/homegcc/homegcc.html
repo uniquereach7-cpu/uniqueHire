@@ -1,46 +1,57 @@
-<section class="gcc-section">
-  <div class="gcc-container">
-    
-    <div class="gcc-content">
-      <span class="sub-heading" appScrollAnimate="fade-in">GCC SOLUTIONS</span>
-      <h2 class="main-heading" appScrollAnimate="slide-up">
-        Global Capability Centers: <br>
-        <span class="highlight-orange">A Strategic Imperative</span>
+<section class="gcc">
+  <div class="gcc__inner">
+
+    <!-- Left: Content -->
+    <div class="gcc__content">
+      <span class="gcc__kicker">GCC SOLUTIONS</span>
+
+      <h2 class="gcc__title">
+        Global Capability Centers:
+        <em class="gcc__em">A Strategic Imperative</em>
       </h2>
-      <div class="gcc-visual" appScrollAnimate="slide-up" [delay]="300">
-      <div class="image-frame">
-        <img src="assets/gccbg.png" alt="GCC Team Collaboration" class="gcc-horizontal-img">
-      </div>
-    </div>
-      <p class="section-desc" appScrollAnimate="fade-in" [delay]="200">
-        Leading businesses are using GCCs to build core and critical capabilities that are not 'outsourceable'.
+
+      <p class="gcc__desc">
+        Leading businesses are using GCCs to build core and critical capabilities
+        that are not outsourceable — combining talent, technology and operational discipline.
       </p>
 
-      <div class="gcc-features-grid">
-        <div class="feature-item" appScrollAnimate="slide-up">
-          <h4 class="feature-title">Access niche skill sets and top 2% talent</h4>
-          <p class="feature-sub">via centers in talent-rich hubs</p>
-        </div>
-        
-        <div class="feature-item" appScrollAnimate="slide-up" [delay]="150">
-          <h4 class="feature-title">At least 40% lower cost of teams</h4>
-          <p class="feature-sub">with increased transparency and efficiency</p>
+      <!-- 2×2 metrics grid -->
+      <div class="gcc__metrics">
+
+        <div class="gcc__metric" appScrollAnimate="slide-up">
+          <span class="gcc__metric-num">40%</span>
+          <span class="gcc__metric-label">Lower Cost of Teams</span>
+          <p class="gcc__metric-sub">with increased transparency and efficiency</p>
         </div>
 
-        <div class="feature-item" appScrollAnimate="slide-up" [delay]="300">
-          <h4 class="feature-title">Over 30% higher productivity</h4>
-          <p class="feature-sub">from in-house teams vs. outsourced staff</p>
+        <div class="gcc__metric" appScrollAnimate="slide-up" [delay]="100">
+          <span class="gcc__metric-num">30%</span>
+          <span class="gcc__metric-label">Higher Productivity</span>
+          <p class="gcc__metric-sub">from in-house teams vs. outsourced staff</p>
         </div>
 
-        <div class="feature-item" appScrollAnimate="slide-up" [delay]="450">
-          <h4 class="feature-title">Cut project timelines by 30%</h4>
-          <p class="feature-sub">ensuring agile responses to market demands</p>
+        <div class="gcc__metric" appScrollAnimate="slide-up" [delay]="200">
+          <span class="gcc__metric-num">30%</span>
+          <span class="gcc__metric-label">Faster Timelines</span>
+          <p class="gcc__metric-sub">ensuring agile responses to market demands</p>
         </div>
+
+        <div class="gcc__metric" appScrollAnimate="slide-up" [delay]="300">
+          <span class="gcc__metric-num">Top 2%</span>
+          <span class="gcc__metric-label">Talent Access</span>
+          <p class="gcc__metric-sub">via centers in talent-rich global hubs</p>
+        </div>
+
       </div>
 
-      <a href="/gcc" class="btn-gcc" appScrollAnimate="fade-in" [delay]="500">
-        Explore GCC Solutions <span class="arrow">→</span>
-      </a>
+      <a href="/gcc" class="gcc__cta">Explore GCC Solutions →</a>
     </div>
+
+    <!-- Right: Cinematic image -->
+    <div class="gcc__visual" appScrollAnimate="fade-in" [delay]="200">
+      <img src="assets/gccbg.png" alt="GCC Solutions" class="gcc__img">
+      <div class="gcc__visual-glow" aria-hidden="true"></div>
+    </div>
+
   </div>
 </section>

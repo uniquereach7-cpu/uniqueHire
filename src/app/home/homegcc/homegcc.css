@@ -1,178 +1,151 @@
-/* --- Main Section Setup with Background Image --- */
-.gcc-section {
-  position: relative; /* Essential for containing the absolute background */
-  padding: 50px 5%;
-  font-family: 'Poppins', sans-serif;
+:host { display: block; }
+
+.gcc {
+  padding: 110px 10%;
+  background: #1a2b49;
+  font-family: var(--font-body, 'Poppins', sans-serif);
   overflow: hidden;
-  background-color: #fbfbfb; /* Fallback color */
 }
 
-/* This creates the background image. 
-  By using ::before, we can make it highly transparent 
-  without making the text on top transparent! 
-*/
-.gcc-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* ADD YOUR BACKGROUND IMAGE PATH HERE: */
-  /* background-image: url('/assets/gccbg.png');  */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* Optional: gives a nice parallax effect when scrolling */
-  opacity: 0.5; /* Very low opacity so it doesn't dominate the content */
-  z-index: 0; /* Pushes it to the very back */
-  background-color: transparent;
-}
-
-.gcc-container {
-  position: relative;
-  z-index: 1; /* Pulls all content safely above the background image */
-  max-width: 1250px;
+.gcc__inner {
+  max-width: 1280px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column; /* Stacks content on top of image */
-  align-items: center;
-  text-align: center;
-  gap: 60px; /* Space between the text block and the horizontal image */
-}
-
-/* --- Top Content Styles --- */
-.gcc-content {
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sub-heading {
-  color: #ff7f50;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  display: block;
-  margin-bottom: 25px;
-  text-transform: uppercase;
-}
-
-.main-heading {
-  font-size: 56px;
-  color: #1a2b49;
-  line-height: 1.2;
-  font-weight: 800;
-  margin: 0 0 40px 0;
-}
-
-.highlight-orange {
-  color: #ff7f50;
-}
-
-.section-desc {
-  font-size: 18px;
-  color: #555;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 20px auto 40px auto;
-}
-
-/* --- Features Grid (4 Columns) --- */
-.gcc-features-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  margin-bottom: 40px;
-  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: center;
 }
 
-.feature-item {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 25px 20px;
-  border-radius: 16px;
-  border-left: 4px solid #ff7f50; /* Keeps the styling from your screenshot */
-  text-align: left;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-}
-
-.feature-title {
-  font-size: 18px;
-  color: #ff7f50;
-  margin: 0 0 10px 0;
+/* Left content */
+.gcc__kicker {
+  display: block;
+  font-size: 11px;
   font-weight: 700;
-  line-height: 1.4;
+  letter-spacing: 3px;
+  color: #ff7f50;
+  margin-bottom: 24px;
 }
 
-.feature-sub {
+.gcc__title {
+  font-size: clamp(30px, 3.2vw, 48px);
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1.12;
+  margin: 0 0 24px 0;
+}
+
+.gcc__em {
+  font-style: normal;
+  color: #ff7f50;
+  display: block;
+}
+
+.gcc__desc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.75;
+  margin: 0 0 48px 0;
+}
+
+/* 2×2 metrics grid */
+.gcc__metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+
+.gcc__metric {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 28px 24px;
+  transition: background 0.3s ease;
+}
+.gcc__metric:hover { background: rgba(255, 127, 80, 0.10); }
+
+.gcc__metric-num {
+  display: block;
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: clamp(44px, 4.5vw, 64px);
+  color: #ff7f50;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.gcc__metric-label {
+  display: block;
   font-size: 14px;
-  color: #666;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.gcc__metric-sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
   margin: 0;
   line-height: 1.5;
 }
 
-.btn-gcc {
+/* CTA */
+.gcc__cta {
   display: inline-flex;
   align-items: center;
-  background-color: #1a2b49; /* Dark blue to contrast with orange */
-  color: white;
-  padding: 16px 35px;
+  background: #ff7f50;
+  color: #ffffff;
+  padding: 16px 38px;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 700;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  box-shadow: 0 10px 20px rgba(26, 43, 73, 0.2);
+  font-size: 15px;
+  box-shadow: 0 8px 28px rgba(255, 127, 80, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.btn-gcc:hover {
+.gcc__cta:hover {
   transform: translateY(-3px);
-  background-color: #ff7f50;
-  box-shadow: 0 15px 30px rgba(255, 127, 80, 0.3);
+  box-shadow: 0 14px 40px rgba(255, 127, 80, 0.48);
 }
 
-.arrow {
-  margin-left: 12px;
-}
-
-/* --- Bottom Visual (Horizontal Image) --- */
-.gcc-visual {
-  width: 100%;
-}
-
-.image-frame {
-  width: 100%;
-  border-radius: 30px;
+/* Right: image */
+.gcc__visual {
+  position: relative;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 4 / 5;
 }
 
-.gcc-horizontal-img {
+.gcc__img {
   width: 100%;
-  height: 450px; /* Forces the image into a wide, cinematic horizontal strip */
-  object-fit: cover; /* Ensures the image fills the banner without stretching */
+  height: 100%;
+  object-fit: cover;
   display: block;
+  transition: transform 0.6s ease;
+}
+.gcc__visual:hover .gcc__img { transform: scale(1.04); }
+
+.gcc__visual-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(26, 43, 73, 0.40) 100%
+  );
+  pointer-events: none;
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 1100px) {
-  .gcc-features-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2x2 grid on tablets */
+/* Responsive */
+@media (max-width: 1024px) {
+  .gcc__inner {
+    grid-template-columns: 1fr;
+    gap: 60px;
   }
-  .main-heading { font-size: 48px; }
-  .gcc-horizontal-img { height: 350px; }
+  .gcc__visual { aspect-ratio: 16 / 9; }
 }
 
 @media (max-width: 600px) {
-  .gcc-features-grid {
-    grid-template-columns: 1fr; /* Stacked on mobile */
-  }
-  .main-heading { font-size: 36px; }
-  .gcc-horizontal-img { height: 250px; }
+  .gcc { padding: 80px 6%; }
+  .gcc__metrics { grid-template-columns: 1fr 1fr; }
 }

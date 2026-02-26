@@ -1,48 +1,46 @@
-<section class="industries-section">
-  <h2 class="section-main-title" appScrollAnimate="fade-in">Our Market Segments</h2>
+<section class="ind">
+  <div class="ind__inner">
 
-  <div class="industries-container" appScrollAnimate="slide-up" [delay]="150">
-    
-    <h3 class="container-subtitle">
-      We specialize in providing tailored solutions for a variety of industries
-    </h3>
+    <!-- Header -->
+    <div class="ind__header">
+      <span class="ind__kicker">MARKET SEGMENTS</span>
+      <h2 class="ind__title">
+        Industries We
+        <em class="ind__em">Serve</em>
+      </h2>
+      <p class="ind__sub">Specialized talent and technology solutions across diverse sectors.</p>
+    </div>
 
-    <div class="industries-grid">
-      
-      <div class="industry-card" appScrollAnimate="slide-up" [delay]="100">
-        <img src="assets/Banking.jpg" alt="Manufacturing" class="industry-img">
-        <h4 class="industry-title">Banking</h4>
-        <p class="industry-desc">Supplying solutions essential for diverse manufacturing processes, ensuring efficiency and reliability.</p>
+    <!-- Layout: list + sticky preview -->
+    <div class="ind__layout">
+
+      <!-- Left: item list -->
+      <div class="ind__list">
+        @for (ind of industries; track ind.title; let i = $index) {
+          <div
+            class="ind__item"
+            [class.ind__item--active]="hoveredIndex === i"
+            (mouseenter)="hoveredIndex = i"
+            (click)="hoveredIndex = i"
+          >
+            <span class="ind__num">{{ i < 9 ? '0' + (i + 1) : (i + 1) }}</span>
+            <span class="ind__name">{{ ind.title }}</span>
+            <span class="ind__arrow">→</span>
+          </div>
+        }
       </div>
 
-      <div class="industry-card" appScrollAnimate="slide-up" [delay]="200">
-        <img src="assets/Medical.jpg" alt="Agriculture" class="industry-img">
-        <h4 class="industry-title">Healthcare</h4>
-        <p class="industry-desc">Enhancing yields and protecting assets to support sustainable agriculture practices.</p>
-      </div>
-
-      <div class="industry-card" appScrollAnimate="slide-up" [delay]="300">
-        <img src="assets/indusdev.jpeg" alt="Construction" class="industry-img">
-        <h4 class="industry-title">Other</h4>
-        <p class="industry-desc">Offering specialty solutions for durable and high-performance infrastructure applications.</p>
-      </div>
-
-      <div class="industry-card" appScrollAnimate="slide-up" [delay]="400">
-        <img src="assets/indusretail.jpeg" alt="Healthcare" class="industry-img">
-        <h4 class="industry-title">Other</h4>
-        <p class="industry-desc">Providing critical services for healthcare facilities to ensure high standards and patient safety.</p>
-      </div>
-
-      <div class="industry-card" appScrollAnimate="slide-up" [delay]="500">
-        <img src="assets/Other.jpg" alt="Food and Beverage" class="industry-img">
-        <h4 class="industry-title">Other</h4>
-        <p class="industry-desc">Offering high-grade support to ensure safe, high-quality food and beverage production.</p>
-      </div>
-
-      <div class="industry-card" appScrollAnimate="slide-up" [delay]="600">
-        <img src="assets/Other1.jpg" alt="Textiles" class="industry-img">
-        <h4 class="industry-title">Other</h4>
-        <p class="industry-desc">Supplying core solutions for manufacturing to enhance the quality and performance of garments.</p>
+      <!-- Right: sticky image preview -->
+      <div class="ind__preview">
+        @for (ind of industries; track ind.title; let i = $index) {
+          <div class="ind__slide" [class.ind__slide--active]="hoveredIndex === i">
+            <img [src]="ind.img" [alt]="ind.title" class="ind__slide-img">
+            <div class="ind__slide-info">
+              <span class="ind__slide-name">{{ ind.title }}</span>
+              <p class="ind__slide-desc">{{ ind.desc }}</p>
+            </div>
+          </div>
+        }
       </div>
 
     </div>

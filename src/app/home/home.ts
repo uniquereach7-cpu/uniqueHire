@@ -1,7 +1,7 @@
-import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, OnDestroy } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ScrollAnimateDirective } from '../directives/scroll-animate.directive';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Homeservice } from './homeservice/homeservice';
 import { Homegcc } from './homegcc/homegcc';
 import { Homeaboutus } from './homeaboutus/homeaboutus';
@@ -10,92 +10,88 @@ import { Homeindustries } from './homeindustries/homeindustries';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, ScrollAnimateDirective,Homeservice,Homegcc,Homeaboutus,Homeindustries],
+  imports: [RouterModule, Homeservice, Homegcc, Homeaboutus, Homeindustries],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })
 export class Home implements AfterViewInit, OnDestroy {
-  @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
-
-  clients = [
-    { name: 'Client 1', logo: 'assets/clients/logo1.png' },
-    { name: 'Client 2', logo: 'assets/clients/logo2.png' },
-    { name: 'Client 3', logo: 'assets/clients/logo3.png' },
-    { name: 'Client 4', logo: 'assets/clients/logo4.png' },
-    { name: 'Client 5', logo: 'assets/clients/logo5.png' },
-    { name: 'Client 6', logo: 'assets/clients/logo6.png' },
-  ];
-
-  private stats = [
-    { id: 'stat-0', value: 95, suffix: '%' },
-    { id: 'stat-1', value: 250, suffix: '+' },
-    { id: 'stat-2', value: 7200, suffix: '+' },
-  ];
-
-  private observers: IntersectionObserver[] = [];
-  private started = new Set<string>();
-  private currentIndex = 0;
-  private isScrolling = false;
-  private wheelTimeout: any;
+  private scrollTriggers: ScrollTrigger[] = [];
 
   ngAfterViewInit(): void {
-    this.setupStatAnimations();
-
+    gsap.registerPlugin(ScrollTrigger);
+    this.runHeroEntrance();
+    this.setupHeroParallax();
+    this.setupSectionTransitions();
   }
 
   ngOnDestroy(): void {
-    this.observers.forEach(observer => observer.disconnect());
-    
-    if (this.wheelTimeout) clearTimeout(this.wheelTimeout);
+    this.scrollTriggers.forEach(t => t.kill());
   }
 
-  private setupStatAnimations(): void {
-    const options = { root: null, threshold: 0.35 };
+  /* Staggered hero entrance on page load */
+  private runHeroEntrance(): void {
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.to('.hero__badge',     { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', clearProps: 'opacity,transform' })
+      .to('.hero__title',     { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', clearProps: 'opacity,transform' }, '-=0.25')
+      .to('.hero__sub',       { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', clearProps: 'opacity,transform' }, '-=0.45')
+      .to('.hero__actions',   { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', clearProps: 'opacity,transform' }, '-=0.4')
+      .to('.hero__stats-bar', { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', clearProps: 'opacity,transform' }, '-=0.35');
 
-    this.stats.forEach(stat => {
-      const el = document.getElementById(stat.id);
+    // Set initial positions for animation
+    gsap.set('.hero__badge',     { y: 20 });
+    gsap.set('.hero__title',     { y: 60 });
+    gsap.set('.hero__sub',       { y: 30 });
+    gsap.set('.hero__actions',   { y: 20 });
+    gsap.set('.hero__stats-bar', { y: 30 });
+
+    // Re-run timeline (GSAP timelines run from current state)
+    tl.restart();
+  }
+
+  /* Parallax on the hero background image */
+  private setupHeroParallax(): void {
+    const st = ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: (self) => {
+        gsap.set('.hero__bg', { yPercent: self.progress * 22 });
+      }
+    });
+    this.scrollTriggers.push(st);
+  }
+
+  /* Each section slides up as it enters the viewport */
+  private setupSectionTransitions(): void {
+    const selectors = [
+      'app-homeaboutus',
+      'app-homeservice',
+      'app-homegcc',
+      'app-homeindustries',
+      '.clients'
+    ];
+
+    selectors.forEach(sel => {
+      const el = document.querySelector(sel);
       if (!el) return;
 
-      el.innerText = `0${stat.suffix}`;
+      gsap.set(el, { opacity: 0, y: 70 });
 
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !this.started.has(stat.id)) {
-            this.started.add(stat.id);
-            this.animateCount(el, stat.value, stat.suffix);
-            io.disconnect();
-          }
-        });
-      }, options);
-
-      io.observe(el);
-      this.observers.push(io);
+      const st = ScrollTrigger.create({
+        trigger: el,
+        start: 'top 82%',
+        once: true,
+        onEnter: () => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 1.0,
+            ease: 'power3.out',
+          });
+        }
+      });
+      this.scrollTriggers.push(st);
     });
   }
-
-  private animateCount(
-    element: HTMLElement,
-    targetValue: number,
-    suffix: string,
-    duration: number = 2000
-  ): void {
-    const startTime = Date.now();
-    const startValue = 0;
-
-    const updateCount = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const currentValue = Math.floor(startValue + (targetValue - startValue) * progress);
-
-      element.innerText = `${currentValue}${suffix}`;
-
-      if (progress < 1) {
-        requestAnimationFrame(updateCount);
-      }
-    };
-
-    requestAnimationFrame(updateCount);
-  }
-
-  
 }

@@ -1,0 +1,42 @@
+<section class="about-section" id="about-stats-section">
+  <div class="about-container">
+    
+    <div class="about-content">
+      <h2 class="main-heading" appScrollAnimate="slide-up">
+        <span class="highlight-blue">1000</span>
+      </h2>
+      <p class="desc-text" appScrollAnimate="fade-in" [delay]="150">
+        With decades of experience, Uniquehire is consistently moving forward, pairing exceptional talent, efficient processes, and emerging technologies to thrive in the ever-changing business terrain.
+      </p>
+      <p class="desc-text" appScrollAnimate="fade-in" [delay]="300">
+        At the heart of our services lies ExcelShore®, our in-house platform that transforms the delivery ecosystem. Backed by proven leadership and a data-driven approach, we guarantee measurable returns and client satisfaction.
+      </p>
+    </div>
+
+    <div class="about-stats-wrapper" appScrollAnimate="slide-left" [delay]="200">
+      
+      <img src="/assets/mapp.png" alt="Global Reach" class="map-bg">
+
+      <div class="stats-container">
+        <div class="stat-item">
+          <h3 class="stat-title">Valued Clients</h3>
+          <div class="stat-divider"></div>
+          <p class="stat-number">{{ clientsCount }}+</p>
+        </div>
+
+        <div class="stat-item">
+          <h3 class="stat-title">Committed Employees</h3>
+          <div class="stat-divider"></div>
+          <p class="stat-number">{{ employeesCount }}+</p>
+        </div>
+
+        <div class="stat-item">
+          <h3 class="stat-title">Years Experience</h3>
+          <div class="stat-divider"></div>
+          <p class="stat-number">{{ yearsCount }}+</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

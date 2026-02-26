@@ -1,0 +1,164 @@
+/* --- Main Background Section --- */
+.industries-section {
+  background-color: #072b4f; /* The dark navy blue from the screenshot */
+  padding: 80px 5%;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  border-radius: 100px
+}
+
+.section-main-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 40px 0;
+}
+
+/* --- The Large White Box --- */
+.industries-container {
+  background-color: #f7f9fc; /* Soft off-white to match the reference */
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 80px; /* Big rounded corners */
+  padding: 60px 5%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.container-subtitle {
+  color: #072b4f;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  line-height: 1.4;
+}
+
+/* --- The Grid & Individual Cards --- */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* --- Updated Card Container --- */
+.industry-card {
+  background: #ffffff;
+  padding: 0; /* Removed the 30px padding so the image can touch the edges */
+  border-radius: 20px;
+  overflow: hidden; /* This forces the top corners of the image to round off perfectly */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); 
+  border: 1px solid #eef1f6;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.industry-card:hover {
+  transform: translateY(-8px); 
+  box-shadow: 0 15px 35px rgba(7, 43, 79, 0.1); 
+  border-color: #d1dce8;
+}
+
+/* --- Updated Full-Width Image --- */
+.industry-img {
+  width: 100%; /* Forces the image to span the entire width of the card */
+  height: 200px; /* Adjust this height to whatever looks best for your photos */
+  object-fit: cover; /* Prevents the image from squishing or stretching */
+  display: block; /* Removes the tiny default gap under images */
+  margin-bottom: 25px; /* Space between the image and the title */
+  border-radius: 0; /* Let the card container handle the rounded corners */
+  box-shadow: none; 
+}
+
+/* --- Adjusted Text Padding --- */
+/* Because we removed padding from the card, we add it to the text directly */
+.industry-title {
+  font-size: 20px;
+  color: #072b4f;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+  padding: 0 25px; /* Side padding */
+}
+
+.industry-desc {
+  font-size: 14.5px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 25px 30px 25px; /* Side and bottom padding */
+}
+
+/* --- Bottom Buttons --- */
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 14px 32px;
+  border-radius: 8px; /* Matches the slightly rounded buttons in the screenshot */
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #072b4f;
+  color: #ffffff;
+  border: 2px solid #072b4f;
+}
+
+.btn-primary:hover {
+  background-color: #0a3d70; /* Slightly lighter blue on hover */
+  border-color: #0a3d70;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #072b4f;
+  border: 2px solid #072b4f;
+}
+
+.btn-secondary:hover {
+  background-color: #072b4f;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 992px) {
+  .industries-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .industries-container {
+    padding: 40px 20px;
+    border-radius: 25px;
+  }
+  
+  .container-subtitle {
+    font-size: 22px;
+  }
+
+  .industries-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile phones */
+  }
+  
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}

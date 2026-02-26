@@ -1,0 +1,178 @@
+.services-section {
+  padding: 10px 5%;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* Changed to column layout to stack text on top of cards */
+.services-container {
+  max-width: 1100px; /* Made wider to accommodate 4 cards beautifully */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center;
+  gap: 60px; /* Space between the intro text and the cards */
+}
+
+/* --- Top Content Styling --- */
+.services-intro {
+  max-width: 800px; /* Constrains the paragraph width for readability */
+}
+
+.sub-heading {
+  color: #ff7f50;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.main-heading {
+  font-size: 56px;
+  color: #1a2b49;
+  line-height: 1.2;
+  font-weight: 800;
+  margin: 0 auto 20px auto;
+}
+
+.highlight-orange {
+  color: #ff7f50;
+}
+
+.intro-description {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+
+.btn-explore {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ff7f50;
+  color: white;
+  padding: 16px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 20px rgba(255, 127, 80, 0.2);
+}
+
+.btn-explore:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(255, 127, 80, 0.3);
+}
+
+.arrow {
+  margin-left: 12px;
+}
+
+/* --- Bottom Side: 4 Service Cards in a Row --- */
+.services-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for a single line */
+  gap: 25px;
+}
+
+/* --- Square Image Card Styles --- */
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* This forces the card to be a perfect square */
+  min-height: 250px; /* Prevents them from getting too small on weird screen sizes */
+  background: #fff;
+  border-radius: 30px; /* Smooth rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* The new image style to cover the front of the card */
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills the square without stretching */
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Shrinks and fades the image when hovering over the card */
+.card:hover .card__image {
+  scale: 0.5;
+  opacity: 0;
+}
+
+/* Hover Content (flips up) */
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.95); 
+  backdrop-filter: blur(10px); /* Keeps that nice glass effect */
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0 0 12px 0;
+  font-size: 22px;
+  color: #1a2b49;
+  font-weight: 700;
+}
+
+.card__description {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1200px) {
+  /* On tablets, drop down to a 2x2 grid so they don't get squished */
+  .services-list {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-heading {
+    font-size: 40px;
+  }
+  
+  /* On mobile phones, stack them 1 by 1 */
+  .services-list {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}

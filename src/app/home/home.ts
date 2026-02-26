@@ -2,12 +2,15 @@ import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef } from '@ang
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ScrollAnimateDirective } from '../directives/scroll-animate.directive';
-import { Industry } from './sections/industries/industries.component';
+import { Homeservice } from './homeservice/homeservice';
+import { Homegcc } from './homegcc/homegcc';
+import { Homeaboutus } from './homeaboutus/homeaboutus';
+import { Homeindustries } from './homeindustries/homeindustries';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, ScrollAnimateDirective,Industry],
+  imports: [CommonModule, RouterModule, ScrollAnimateDirective,Homeservice,Homegcc,Homeaboutus,Homeindustries],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

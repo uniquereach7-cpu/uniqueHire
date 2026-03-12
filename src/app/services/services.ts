@@ -16,6 +16,7 @@ type ServiceCard = {
   icon: IconName;
   iconVariant: IconVariant;
   points: string[];
+  img: string;
 };
 
 gsap.registerPlugin(ScrollTrigger);
@@ -36,6 +37,7 @@ export class Services implements AfterViewInit, OnDestroy {
       icon: 'users',
       iconVariant: 'orange',
       points: ['AI-Powered Candidate Matching', 'Automated Screening Process', 'Seamless Onboarding', 'Employee Engagement Tools'],
+      img: 'assets/teamworking.jpg',
     },
     {
       title: 'Technology Consulting',
@@ -44,6 +46,7 @@ export class Services implements AfterViewInit, OnDestroy {
       icon: 'code',
       iconVariant: 'blue',
       points: ['System Modernization', 'Cloud Migration', 'Process Automation', 'DevOps Implementation'],
+      img: 'assets/technology.jpeg',
     },
     {
       title: 'GCC Setup & Operations',
@@ -52,6 +55,7 @@ export class Services implements AfterViewInit, OnDestroy {
       icon: 'globe',
       iconVariant: 'green',
       points: ['Location Strategy', 'Infrastructure Setup', 'Talent Acquisition', 'Operations Management'],
+      img: 'assets/GCC.png',
     },
     {
       title: 'Learning & Development',
@@ -60,6 +64,7 @@ export class Services implements AfterViewInit, OnDestroy {
       icon: 'award',
       iconVariant: 'purple',
       points: ['Technical Training', 'Leadership Programs', 'Certification Courses', 'Custom Workshops'],
+      img: 'assets/learning.jpeg',
     },
     {
       title: 'Staffing & Recruitment',
@@ -68,6 +73,7 @@ export class Services implements AfterViewInit, OnDestroy {
       icon: 'briefcase',
       iconVariant: 'amber',
       points: ['Contract Staffing', 'Permanent Placement', 'Executive Search', 'Volume Hiring'],
+      img: 'assets/Other.jpg',
     },
     {
       title: 'Project Delivery',
@@ -76,6 +82,7 @@ export class Services implements AfterViewInit, OnDestroy {
       icon: 'target',
       iconVariant: 'red',
       points: ['Dedicated Teams', 'Agile Methodology', 'Quality Assurance', 'Timeline Management'],
+      img: 'assets/Other1.jpg',
     },
   ];
 

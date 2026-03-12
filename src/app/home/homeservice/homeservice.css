@@ -65,6 +65,8 @@
 .svc__list { display: flex; flex-direction: column; }
 
 .svc__row {
+  position: relative;
+  overflow: hidden;
   border-bottom: 1px solid rgba(26, 43, 73, 0.09);
   cursor: pointer;
   transition: background 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
@@ -72,11 +74,44 @@
 }
 .svc__row:hover,
 .svc__row--active {
-  background: rgba(255, 127, 80, 0.03);
+  background: transparent;
+}
+
+/* ── Background image layer ── */
+.svc__row-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+  pointer-events: none;
+}
+
+/* Dark overlay so content stays readable */
+.svc__row-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 21, 37, 0.72);
+  z-index: 1;
+}
+
+.svc__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.svc__row:hover .svc__row-bg,
+.svc__row--active .svc__row-bg {
+  opacity: 1;
 }
 
 /* Row head: number | meta | arrow */
 .svc__row-head {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -104,16 +139,23 @@
   color: #1a2b49;
   font-weight: 700;
   margin: 0 0 4px 0;
-  transition: letter-spacing 0.3s ease;
+  transition: letter-spacing 0.3s ease, color 0.4s ease;
 }
 .svc__row--active .svc__name { letter-spacing: 0.2px; }
+
+/* White text on dark bg image */
+.svc__row:hover .svc__name,
+.svc__row--active .svc__name { color: #ffffff; }
 
 .svc__tag {
   font-size: 12px;
   color: #aaa;
   font-weight: 500;
   letter-spacing: 0.5px;
+  transition: color 0.4s ease;
 }
+.svc__row:hover .svc__tag,
+.svc__row--active .svc__tag { color: rgba(255, 255, 255, 0.60); }
 
 .svc__arrow {
   font-size: 22px;
@@ -130,6 +172,8 @@
 
 /* Expandable section — grid-rows trick */
 .svc__expand {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -155,20 +199,10 @@
   line-height: 1.72;
   margin: 0;
   max-width: 520px;
+  transition: color 0.4s ease;
 }
-
-.svc__thumb {
-  width: 200px;
-  height: 136px;
-  border-radius: 14px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.svc__thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.svc__row:hover .svc__desc,
+.svc__row--active .svc__desc { color: rgba(255, 255, 255, 0.82); }
 
 /* Responsive */
 @media (max-width: 900px) {

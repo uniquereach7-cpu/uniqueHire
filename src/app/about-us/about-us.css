@@ -1,325 +1,495 @@
-/* ------------------------------------------------------------------
-   MonsalGothic font-face + global font-family
-   Place font files at: src/assets/fonts/MonsalGothic.woff2 and MonsalGothic.woff
-   ------------------------------------------------------------------ */
+/* ═══════════════════════════════════════════════
+   ABOUT US PAGE — UniqueHire
+   ═══════════════════════════════════════════════ */
 
-
-/* Global font for entire page */
-html, body {
-  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #111;
-  margin: 0;
-  padding: 0;
-  background: #fff;
+:host {
+  display: block;
+  font-family: var(--font-body);
+  color: var(--navy);
+  overflow-x: hidden;
 }
 
-/* --- BASIC HERO SECTION --- */
+/* ─────────────── HERO SECTION ─────────────── */
 .about-hero {
   position: relative;
-  overflow: visible;
-  background: transparent;
-  margin-bottom: 60px;
-  padding: 0 16px;
-}
-
-/* --- HERO IMAGE --- */
-.hero-media {
-  width: 100%;
-  height: 500px;
+  max-height: 200vh;
+  display: flex;
+  align-items: center;
+  padding: 170px 24px 98px;
+  background: linear-gradient(
+    135deg,
+    #fce4ec 0%,
+    #f3e5f5 30%,
+    #e8d5f5 60%,
+    #d1c4e9 100%
+  );
   overflow: hidden;
-  display: block;
-  background: #081033;
-}
-.hero-svg { width: 100%; height: 100%; display: block; }
-
-/* --- CONTENT BOX --- */
-.hero-content {
-  position: relative;
-  width: 60%;
-  margin: -70px auto 0;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(8,16,51,0.12);
-  padding: 20px 24px;
-  text-align: center;
-  z-index: 2;
-}
-.hero-title { margin: 0 0 10px 0; font-size: 24px; font-weight: 700; color: #ff5d00; }
-.hero-desc { margin: 0 0 16px 0; font-size: 15px; color: #000000; }
-.hero-cta { display: inline-block; background: linear-gradient(90deg,#003d77,#005bb5); color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; }
-
-/* --- STATS SECTION --- */
-.hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 12px; justify-items: center; }
-.stat-box { text-align: center; padding: 6px; }
-.stat-value { font-size: 26px; font-weight: 800; color: #003d77; display: inline-block; padding: 6px 10px; border-radius: 8px; background: rgba(0,61,119,0.08); position: relative; }
-.stat-value::after { content: "+"; margin-left: 4px; color: #003d77; font-weight: 700; }
-.stat-label { font-size: 13px; color: #555; margin-top: 6px; }
-
-/* RESPONSIVE */
-@media (min-width: 1100px) { .hero-media { height: 400px; } .hero-title { font-size: 28px; } .stat-value { font-size: 28px; } }
-@media (max-width: 1024px) and (min-width: 720px) { .hero-content { width: 75%; margin: -50px auto 0; padding: 18px 22px; } .hero-media { height: 320px; } }
-@media (max-width: 719px) { .hero-media { height: 260px; } .hero-content { width: 92%; margin-top: 16px; padding: 16px 18px; } .hero-title { font-size: 20px; } .hero-desc { font-size: 14px; } .hero-stats { grid-template-columns: 1fr; gap: 10px; } .stat-value { font-size: 22px; } }
-
-/* TEAM */
-.team-section { padding: 42px 16px 0; background: #fff; }
-.container { max-width: 1200px; margin: 0 auto; }
-.team-heading { text-align: center; color: #003d77; font-size: 28px; margin: 0 0 8px; font-weight: 700; }
-.team-intro { text-align: center; color: #000; margin: 0 0 28px; font-size: 15px; }
-.team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; align-items: start; }
-.team-card { display: flex; gap: 18px; align-items: flex-start; padding: 16px; border-radius: 10px; border: 1px solid rgba(0,61,119,0.06); background: #fff; }
-.team-card-single { grid-column: 1 / -1; justify-self: center; width: 48%; display: flex; flex-direction: row; align-items: flex-start; text-align: left; }
-@media (max-width: 719px) { .team-card-single { width: 100%; justify-self: stretch; flex-direction: column; text-align: center; align-items: center; } }
-.team-photo { width: 140px; height: 140px; object-fit: cover; border-radius: 8px; flex: 0 0 140px; box-shadow: 0 6px 18px rgba(8,16,51,0.08); border: 3px solid rgba(255,93,0,0.06); }
-.team-info { flex: 1 1 auto; min-width: 0; }
-.team-name { margin: 6px 0 4px; color: #003d77; font-size: 18px; font-weight: 700; }
-.team-role { color: #ff5d00; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
-.team-bio { color: #000; margin: 0; font-size: 14px; line-height: 1.5; }
-.team-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(8,16,51,0.12); transition: transform 180ms ease, box-shadow 180ms ease; }
-@media (max-width: 719px) { .team-grid { grid-template-columns: 1fr; gap: 18px; } .team-card { flex-direction: column; align-items: center; text-align: center; } .team-photo { width: 120px; height: 120px; flex: 0 0 auto; } .team-info { width: 100%; } .team-role, .team-name { text-align: center; } .team-bio { margin-top: 8px; } }
-@media (min-width: 720px) and (max-width: 1024px) { .team-photo { width: 120px; height: 120px; flex: 0 0 120px; } .team-grid { gap: 20px; } }
-.team-source { margin-top: 18px; text-align: center; color: #666; font-size: 12px; }
-
-
-/* about-us.css (add this, and delete old .journey/.timeline styles) */
-
-.journey2{
-  font-family: 'Poppins', sans-serif;
-  padding: 96px 24px 110px;
-  background: #ffffff;
-  color: #0b3250;
 }
 
-.journey2__header{
-  max-width: 980px;
-  margin: 0 auto 54px;
-  text-align: center;
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: rgba(255, 127, 80, 0.12);
+  filter: blur(100px);
+  pointer-events: none;
 }
 
-.journey2__eyebrow{
-  margin: 0 0 10px 0;
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #ff6b3a;
-  font-weight: 700;
+.about-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(26, 43, 73, 0.08);
+  filter: blur(100px);
+  pointer-events: none;
 }
 
-.journey2__title{
-  margin: 0;
-  font-size: clamp(34px, 4.2vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 800;
-  color: #163a5f;
-}
-
-.journey2__wrap{
-  max-width: 980px;
+.about-hero__inner {
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
-  padding: 0 0 10px;
+  z-index: 1;
 }
 
-/* vertical gradient line */
-.journey2__line{
+.about-hero__heading {
+  font-family: var(--font-body);
+  font-size: clamp(42px, 6vw, 80px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--navy-dark);
+  margin: 0 0 28px;
+}
+
+.about-hero__subtitle {
+  font-size: clamp(16px, 1.8vw, 20px);
+  line-height: 1.9;
+  color: rgba(26, 43, 73, 0.7);
+  max-width: 900px;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ─────────────── ACHIEVEMENTS ─────────────── */
+.achievements {
+  position: relative;           /* needed for absolute pseudo-element */
+  padding: 200px 24px;
+  background: var(--white);
+  text-align: center;
+  overflow: hidden;             /* hide any overflow from background */
+}
+
+/* full-bleed background image using pseudo-element so inner content keeps max-width */
+.achievements::before{
+  content: "";
   position: absolute;
+  left: 50%;
   top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 4px;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: linear-gradient(180deg, #ff6b3a 0%, #163a5f 100%);
+  transform: translateX(-50%);  /* center the background horizontally */
+  width: 100%;                 /* make it stretch full viewport width */
+  height: 100%;
+  background-image: url('/assets/mappp.png');
+  background-repeat: no-repeat;
+  background-position: center bottom; /* adjust to sit visually like a "map under stats" */
+  background-size: cover;             /* cover full width/height nicely */
+  opacity: 0.3;                       /* subtle — change value to taste */
+  pointer-events: none;               /* don't interfere with clicks */
+  z-index: 0;
 }
 
-/* item positioning */
-.journey2__item{
+/* keep inner content above the background */
+.achievements__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  min-height: 108px;
-  padding: 22px 0;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.journey2__item--left .journey2__card{ grid-column: 1; justify-self: end; margin-right: 62px; }
-.journey2__item--right .journey2__card{ grid-column: 2; justify-self: start; margin-left: 62px; }
-
-/* dot */
-.journey2__dot{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #ff6b3a;
-  box-shadow: 0 0 0 8px rgba(255,107,58,0.14);
+/* headings text & layout */
+.achievements__heading {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin: 0 0 12px;
 }
 
-/* card */
-.journey2__card{
-  width: min(360px, 92%);
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 18px 20px;
-  border: 1px solid rgba(255, 173, 131, 0.45);
-  box-shadow: 0 16px 40px rgba(11, 50, 80, 0.08);
-}
-
-.journey2__year{
-  font-size: 20px;
-  font-weight: 800;
-  color: #ff6b3a;
-  letter-spacing: -0.01em;
-  margin-bottom: 4px;
-}
-
-.journey2__heading{
+.achievements__subtitle {
   font-size: 16px;
-  font-weight: 800;
-  color: #163a5f;
-  margin-bottom: 2px;
+  color: var(--gray-text);
+  margin: 0 0 60px;
+  line-height: 1.6;
 }
 
-.journey2__text{
+/* grid of stats */
+.achievements__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.achievements__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.achievements__value {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.achievements__suffix {
+  font-size: 0.7em;
+  color: var(--orange-alt);
+}
+
+.achievements__label {
+  font-size: 15px;
+  color: var(--gray-text);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* remove previous globe styles — not needed anymore */
+/* .achievements__globe { ... } */
+
+/* responsive behaviour */
+@media (max-width: 980px) {
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .achievements {
+    padding: 80px 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .achievements__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .achievements {
+    padding: 60px 14px;
+  }
+  .achievements::before {
+    background-position: center 80%; /* tweak for mobile visual */
+  }
+}
+/* ─────────────── TESTIMONIALS ─────────────── */
+.testimonials {
+  padding: 100px 0 80px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.testimonials__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.testimonials__heading {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin: 0 0 48px;
+}
+
+.testimonials__dot {
+  color: var(--orange);
+}
+
+/* ── Marquee ── */
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 24px;
+  /* fade edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.marquee__track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee__track--right {
+  animation: marqueeRight 40s linear infinite;
+}
+
+.marquee__track--left {
+  animation: marqueeLeft 40s linear infinite;
+}
+
+.marquee__track.paused {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.marquee__card {
+  flex-shrink: 0;
+  width: 360px;
+  background: var(--white);
+  border: 1px solid rgba(26, 43, 73, 0.08);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.marquee__card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.marquee__card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.marquee__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 127, 80, 0.2);
+}
+
+.marquee__meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.marquee__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy-dark);
+}
+
+.marquee__role {
   font-size: 13px;
-  line-height: 1.55;
-  color: rgba(22, 58, 95, 0.62);
+  color: var(--orange);
   font-weight: 500;
 }
 
-
-/* ----------------- PHONE: vertical layout ----------------- */
-/* ===== MOBILE ONLY (≤767.98px) — hard alignment fix ===== */
-@media (max-width: 767.98px){
-
-  /* keep vertical spine visible & centered */
-  .journey .timeline{
-    position:static !important;
-    display: block !important;
-    padding: 16px 0 !important;
-    isolation: isolate;
-  }
-  .journey .axis{
-    position:absolute !important;
-    left: 50% !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: var(--axis-thickness, 3px) !important;
-    transform: translateX(-50%) !important;
-    background: var(--line, #003d77) !important;
-    z-index: 1;
-  }
-
-  .journey .milestone{
-    position: relative !important;
-    min-height: 120px !important;
-    margin: 32px 0 !important;
-  }
-
-  /* HOLLOW dot dead-center on the spine */
-  .journey .dot{
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: var(--dot-size) !important;
-    height: var(--dot-size) !important;
-    background: transparent !important;
-    border: 3px solid var(--dot) !important; /* black ring */
-    border-radius: 50% !important;
-    z-index: 3;
-    box-shadow: 0 0 0 3px #fff; /* optional */
-  }
-
-  /* labels vertically centered with the dot */
-  .journey .label{
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: auto !important;
-    max-width: 44vw !important;
-    z-index: 2;
-  }
-
-  /* RIGHT side (odd) */
-  .journey .milestone:nth-of-type(odd) .label{
-    left: calc(50% + (var(--axis-thickness) / 2) + var(--gap)) !important;
-    right: auto !important;
-    text-align: left !important;
-  }
-  /* LEFT side (even) */
-  .journey .milestone:nth-of-type(even) .label{
-    right: calc(50% + (var(--axis-thickness) / 2) + var(--gap)) !important;
-    left: auto !important;
-    text-align: right !important;
-  }
-
-  /* BLACK connector that ALWAYS touches the spine */
-  .journey .label::after{
-    content: "" !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    height: 2px !important;
-    width: var(--gap) !important;           /* length from text edge to spine */
-    background: var(--connector) !important;/* black */
-  }
-  .journey .milestone:nth-of-type(odd)  .label::after{ right: 100% !important; left: auto !important; }
-  .journey .milestone:nth-of-type(even) .label::after{ left: 100%  !important; right: auto !important; }
+.marquee__quote {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--gray-text);
+  margin: 0;
 }
 
-/* responsive: single column with line on left */
-@media (max-width: 820px){
-  .journey2__wrap{ max-width: 680px; }
+/* ─────────────── CLIENTS SECTION ─────────────── */
+.clients {
+  padding: 100px 24px;
+  background: var(--white);
+}
 
-  .journey2__line{
-    left: 22px;
-    transform: none;
+.clients__inner {
+  max-width: 1200px; /* wider so 4 columns fit comfortably */
+  margin: 0 auto;
+}
+
+.clients__heading {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin: 0 0 12px;
+}
+
+.clients__dot {
+  color: var(--orange);
+}
+
+.clients__subtitle {
+  font-size: 16px;
+  color: var(--gray-text);
+  margin: 0 0 32px;
+  line-height: 1.6;
+}
+
+/* Grid that uses content-sized columns so cards don't stretch full width.
+   repeat(4, max-content) keeps 4 items per row sized to their content.
+   justify-content:center keeps the group centered in the container. */
+.clients__logos {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  justify-content: center;
+  gap: 50px 36px; /* row-gap column-gap */
+  align-items: center;
+}
+
+/* Logo card sized to content (not full-width). Use a small padding
+   and subtle rounded background that matches logo size. */
+.clients__logo-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;             /* small padding so background hugs the logo */
+  background: rgba(0,0,0,0.03);  /* subtle background — change or remove if you want transparent */
+  border-radius: 8px;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  text-decoration: none;
+  /* make sure card only as wide as the content */
+  width: max-content;
+  height: auto;
+  box-shadow: none;
+}
+
+/* Hover effect — small lift and shadow */
+.clients__logo-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(13, 27, 45, 0.06);
+}
+
+/* Logo sizing — control max height, preserve aspect ratio */
+.clients__logo-card img {
+  height: 48px;        /* adjust to taste (48, 56, etc.) */
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(100%); /* optional */
+  opacity: 0.8;            /* optional */
+  transition: filter 160ms ease, opacity 160ms ease;
+}
+
+/* Reveal full color on hover */
+.clients__logo-card:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Responsive: 2 columns on medium screens, 1 on narrow screens */
+@media (max-width: 980px) {
+  .clients__inner { max-width: 900px; }
+  .clients__logos {
+    grid-template-columns: repeat(2, max-content);
+    gap: 18px 28px;
   }
+}
 
-  .journey2__item{
+@media (max-width: 520px) {
+  .clients__logos {
     grid-template-columns: 1fr;
-    padding-left: 54px;
-    min-height: 96px;
+    justify-items: center; /* center single column item */
+    gap: 14px;
   }
 
-  .journey2__dot{
-    left: 22px;
-    top: 36px;
-    transform: translate(-50%, -50%);
+  .clients__logo-card img {
+    height: 44px;
   }
 
-  .journey2__item--left .journey2__card,
-  .journey2__item--right .journey2__card{
-    grid-column: 1;
-    justify-self: stretch;
-    margin: 0;
-    width: 100%;
+  .clients__subtitle {
+    margin-bottom: 20px;
   }
 }
-/* Put this at the VERY END of your global styles (styles.css) or about-us.css.
-   This forces Syne everywhere, including all your existing sections. */
+/* ═══════════════ RESPONSIVE ═══════════════ */
+@media (max-width: 1024px) {
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
 
-/* 1) Global default */
-
-
-html, body{
-  font-family: 'Poppins', sans-serif !important;
+  .team__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* 2) Kill MonsalGothic usage (override without deleting your @font-face) */
-*,
-*::before,
-*::after{
-  font-family: 'Poppins', sans-serif !important;
-}
+@media (max-width: 640px) {
+  .about-hero {
+    padding: 100px 18px 60px;
+    min-height: 60vh;
+  }
 
-/* 3) Optional: keep icons/SVG from being affected in weird cases */
-svg, svg *{
-  font-family: inherit !important;
+  .about-hero__heading {
+    font-size: 36px;
+  }
+
+  .achievements {
+    padding: 60px 18px;
+  }
+
+  .achievements__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .team {
+    padding: 60px 18px;
+  }
+
+  .team__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .testimonials {
+    padding: 60px 0 40px;
+  }
+
+  .testimonials__inner {
+    padding: 0 18px;
+  }
+
+  .marquee__card {
+    width: 290px;
+    padding: 22px;
+  }
+
+  .clients {
+    padding: 60px 18px;
+  }
+
+  .clients__logo-card {
+    padding: 24px 20px;
+  }
 }

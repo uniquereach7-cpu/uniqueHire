@@ -19,6 +19,11 @@
           (click)="setActive(i)"
           (mouseenter)="setActive(i)"
         >
+          <!-- Background image layer (shown on hover) -->
+          <div class="svc__row-bg" aria-hidden="true">
+            <img [src]="svc.img" alt="" class="svc__bg-img">
+          </div>
+
           <!-- Row header: number + name + arrow -->
           <div class="svc__row-head">
             <span class="svc__num">{{ svc.num }}</span>
@@ -29,13 +34,10 @@
             <span class="svc__arrow">↗</span>
           </div>
 
-          <!-- Expandable content: desc + thumbnail -->
+          <!-- Expandable content: desc only (image moved to background) -->
           <div class="svc__expand">
             <div class="svc__expand-inner">
               <p class="svc__desc">{{ svc.desc }}</p>
-              <div class="svc__thumb">
-                <img [src]="svc.img" [alt]="svc.title">
-              </div>
             </div>
           </div>
         </div>

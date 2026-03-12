@@ -1,7 +1,7 @@
 /* Main Section */
 .chero {
   position: relative;
-  padding: 15px 8%;
+  padding: 300px 8%;
   /* This creates that soft orange glow on the left side only */
   background: radial-gradient(circle at 0% 50%, rgba(255, 127, 80, 0.08) 0%, #ffffff 50%);
   font-family: 'Poppins', sans-serif;

@@ -16,7 +16,7 @@
   --bg-header: rgba(255, 255, 255, 0.95);
   --ink: #0f172a;
   --text-light: rgba(15, 23, 42, 0.65);
-  --accent: #7c3aed;
+  --accent: orange;
   --shadow-nav: 0 4px 16px rgba(15, 23, 42, 0.08);
   --shadow-header: 0 6px 24px rgba(15, 23, 42, 0.12);
 
@@ -192,7 +192,7 @@
 .rr-header.scrolled .rr-cta {
   padding: 8px 20px;
   font-size: 13px;
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  background: rgb(78, 78, 233);
   color: white;
   border: none;
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);

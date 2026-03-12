@@ -20,6 +20,12 @@
         <article class="sv-card"
                  *ngFor="let s of row; let c = index"
                  [attr.data-variant]="s.iconVariant">
+
+          <!-- Subtle background image -->
+          <div class="sv-card__bg" aria-hidden="true">
+            <img [src]="s.img" alt="" class="sv-card__bg-img">
+          </div>
+
           <div class="sv-card__top">
             <span class="sv-card__num">{{ (r * 3) + (c + 1) }}</span>
 

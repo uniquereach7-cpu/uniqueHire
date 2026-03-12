@@ -1,85 +1,108 @@
-<!-- aboutus.html -->
-<section class="about-hero" #heroRoot>
-  <div class="hero-media" aria-hidden="true">
-    <svg class="hero-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" role="img" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="hero-curve" clipPathUnits="objectBoundingBox">
-          <path d="M0,0 H1 V0.85 C0.82,0.94 0.68,1 0.5,1 C0.32,1 0.18,0.94 0,0.85 Z"></path>
-        </clipPath>
-      </defs>
-      <image
-        href="/assets/team19.JPG"
-        clip-path="url(#hero-curve)"
-        width="1200"
-        height="620"
-        preserveAspectRatio="xMidYMid slice" />
-    </svg>
+<!-- ═══════════════ HERO SECTION ═══════════════ -->
+<section class="about-hero">
+  <div class="about-hero__inner">
+    <h1 class="about-hero__heading">
+      Crafting Digital<br />
+      Experiences That Inspire
+    </h1>
+    <p class="about-hero__subtitle">
+      At UniqueHire, we don't just recruit—we build careers. Whether you're a startup scaling fast
+      or an enterprise transforming talent, we deliver smart, scalable, and impactful hiring
+      solutions that make a difference.
+    </p>
+  </div>
+</section>
+<app-leadership></app-leadership>
+<!-- ═══════════════ TESTIMONIALS SECTION ═══════════════ -->
+<section class="testimonials">
+  <div class="testimonials__inner">
+    <h2 class="testimonials__heading">
+      What our clients say<span class="testimonials__dot">.</span>
+    </h2>
   </div>
 
-  <div class="hero-content" role="region" aria-labelledby="heroTitle">
-    <div class="hero-text">
-      <h1 id="heroTitle" class="hero-title">The Leading Force in Empowering Businesses Through Technology &amp; Talent.</h1>
-      <!-- <p class="hero-desc">
-       Empowering businesses with reliable IT solutions, workforce fulfillment, and digital innovation that drive measurable growth and long-term success.
-      </p> -->
-      <a class="hero-cta" routerLink="/contact">Connect Today</a>
+  <!-- Row 1: scrolls RIGHT -->
+  <div
+    class="marquee"
+    (mouseenter)="pauseMarquee(1)"
+    (mouseleave)="resumeMarquee(1)"
+  >
+    <div class="marquee__track marquee__track--right" [class.paused]="marqueeOnePaused">
+      <div class="marquee__card" *ngFor="let t of marqueeRowOne">
+        <div class="marquee__card-header">
+          <img class="marquee__avatar" [src]="t.avatar" [alt]="t.name" loading="lazy" />
+          <div class="marquee__meta">
+            <span class="marquee__name">{{ t.name }}</span>
+            <span class="marquee__role">{{ t.role }}, {{ t.company }}</span>
+          </div>
+        </div>
+        <p class="marquee__quote">{{ t.quote }}</p>
+      </div>
     </div>
+  </div>
 
-    <div class="hero-stats" aria-label="Key statistics">
-      <div class="stat-box">
-        <div class="stat-value" data-target="20">0</div>
-        <div class="stat-label">Clients</div>
-      </div>
-       <div class="stat-box">
-        <div class="stat-value" data-target="850">0</div>
-        <div class="stat-label">IT Professionals</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-value" data-target="20">0</div>
-        <div class="stat-label">Years Experience</div>
+  <!-- Row 2: scrolls LEFT -->
+  <div
+    class="marquee"
+    (mouseenter)="pauseMarquee(2)"
+    (mouseleave)="resumeMarquee(2)"
+  >
+    <div class="marquee__track marquee__track--left" [class.paused]="marqueeTwoPaused">
+      <div class="marquee__card" *ngFor="let t of marqueeRowTwo">
+        <div class="marquee__card-header">
+          <img class="marquee__avatar" [src]="t.avatar" [alt]="t.name" loading="lazy" />
+          <div class="marquee__meta">
+            <span class="marquee__name">{{ t.name }}</span>
+            <span class="marquee__role">{{ t.role }}, {{ t.company }}</span>
+          </div>
+        </div>
+        <p class="marquee__quote">{{ t.quote }}</p>
       </div>
     </div>
   </div>
 </section>
+<!-- ═══════════════ ACHIEVEMENTS SECTION ═══════════════ -->
+<section class="achievements" #achievementsSection>
+  <div class="achievements__inner">
+    <h2 class="achievements__heading">Notable Achievements</h2>
+    <p class="achievements__subtitle">
+      Since 2015 we have been helping small to large businesses find the right talent.
+    </p>
 
+    <div class="achievements__grid">
+      <div class="achievements__stat" *ngFor="let stat of stats; let i = index">
+        <span class="achievements__value">
+          {{ displayValues[i] }}<span class="achievements__suffix">{{ stat.suffix }}</span>
+        </span>
+        <span class="achievements__label">{{ stat.label }}</span>
+      </div>
+    </div>
 
-<section class="team-section" aria-labelledby="teamHeading">
-  <app-leadership></app-leadership>
+    <!-- removed the separate .achievements__globe element;
+         background image is now applied to the section itself -->
+  </div>
 </section>
 
+<!-- ═══════════════ CLIENTS SECTION ═══════════════ -->
+<section class="clients">
+  <div class="clients__inner">
+    <h2 class="clients__heading">
+      Innovation That Earns Trust<span class="clients__dot">.</span>
+    </h2>
+    <p class="clients__subtitle">
+      Backed by trusted partners and industry recognition, we push the boundaries of innovation
+    </p>
 
-<app-whous></app-whous>
-
-
-<!-- about-us.html (replace your whole journey section with this) -->
-
-
-<section class="group-section" aria-labelledby="groupHeading">
-  <div class="container">
-    <h2 id="groupHeading" class="section-title">Our Group &amp; Allied Companies</h2>
-
-  <div class="group-card">
-    <div class="group-text">
-      <p>
-        Our group consists of other IT-related companies in specialized software services and software training services — 
-        <strong>Ridhitek IT Services Private Limited</strong> and <strong>Axness Technologies</strong> — all operating under a shared vision and leadership.
-      </p>
-
-      <p>
-        These companies are interconnected through common ownership and management, allowing us to leverage synergies and resources across our operations. 
-        This alignment enables us to provide cohesive services and solutions while maintaining distinct identities for each company.
-      </p>
-
-      <p>
-        Together, our ecosystem spans recruitment, consulting, enterprise solutions, and IT upskilling — creating an integrated network that helps 
-        clients grow faster and professionals advance further.
-      </p>
+    <div class="clients__logos">
+      <a
+        class="clients__logo-card"
+        *ngFor="let client of clients"
+        [href]="client.url"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img [src]="client.logo" [alt]="client.name + ' logo'" loading="lazy" />
+      </a>
     </div>
-
-    <div class="group-logos">
-      <img src="/assets/companies/axness.png" alt="Axness Technologies Logo" class="company-logo">
-      <img src="/assets" alt="Ridhitek IT Services Logo" class="company-logo">
-    </div>
-  </div>
   </div>
 </section>

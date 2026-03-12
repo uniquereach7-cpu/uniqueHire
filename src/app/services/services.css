@@ -52,13 +52,13 @@
 .sv-rows{
   display:flex;
   flex-direction:column;
-  gap: 26px;
+  gap: 42px;
 }
 
 .sv-row{
   display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 30px;
   align-items: stretch;
 }
 
@@ -77,11 +77,35 @@
   will-change: transform, opacity, filter;
 }
 
+/* ── Subtle background image ── */
+.sv-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.10;
+  transition: opacity 0.35s ease;
+}
+
+.sv-card__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sv-card:hover .sv-card__bg {
+  opacity: 0.15;
+}
+
 .sv-card::before{
   content:"";
   position:absolute;
   inset:-1px;
   border-radius: 18px;
+  z-index: 1;
   background:
     radial-gradient(800px 320px at 10% 0%, rgba(17,24,39,.06), transparent 55%),
     radial-gradient(800px 320px at 90% 100%, rgba(17,24,39,.05), transparent 55%);
@@ -95,7 +119,7 @@
   align-items:center;
   justify-content:space-between;
   margin-bottom: 12px;
-  z-index:1;
+  z-index:2;
 }
 
 .sv-card__num{
@@ -141,7 +165,7 @@
   line-height: 1.08;
   font-weight: 900;
   letter-spacing: -0.03em;
-  z-index: 1;
+  z-index: 2;
 }
 
 .sv-card__subtitle{
@@ -151,7 +175,7 @@
   font-weight: 800;
   letter-spacing: .02em;
   color: rgba(17,24,39,.70);
-  z-index:1;
+  z-index:2;
 }
 .sv-card__desc{
   position:relative;
@@ -159,7 +183,7 @@
   font-size: 14px;
   line-height: 1.75;
   color: rgba(17,24,39,.66);
-  z-index:1;
+  z-index:2;
 }
 
 .sv-points{
@@ -169,7 +193,7 @@
   list-style:none;
   display:grid;
   gap: 10px;
-  z-index:1;
+  z-index:2;
 }
 .sv-point{
   display:flex;
